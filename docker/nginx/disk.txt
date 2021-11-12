@@ -1,0 +1,14 @@
+server {
+    listen       80;
+    server_name  disk.meiflower.top;
+
+    #charset koi8-r;
+
+    #access_log  logs/host.access.log  main;
+
+    location / {
+        proxy_pass http://172.81.247.96:8080;
+        add_header Access-Control-Allow-Origin *;
+    }
+
+}

@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: card-config
+  namespace: {{.Values.namespace}}
+data:
+  application.properties: |
+     server.port=9001
+     server.servlet.context-path=/card
+     #日志相关配置
+     logging.config=classpath:logback-dev.xml
+     #spring json返回数据格式化
+     spring.jackson.date-format=yyyy-MM-dd HH:mm:ss
+     #spring json 时区
+     spring.jackson.time-zone=GMT+8
+
+
+     #================================================数据源配置==============================================================
+     #数据源驱动类
+     spring.datasource.driverClassName=org.sqlite.JDBC
+     #数据源链接地址
+     spring.datasource.url=jdbc:sqlite:/data/sqlite/card2.db
+     #数据源账号
+     spring.datasource.username=
+     #数据源密码
+     spring.datasource.password=
+     spring.datasource.druid.db-type=sqlite
+     #数据源连接池初始化连接数
+     spring.datasource.initialSize=5
+     #数据源连接池最小空闲连接数
+     spring.datasource.minIdle=5
+     #数据源连接池最大连接数
+     spring.datasource.maxActive=10
+     #数据源连接池最大等待时间，单位毫秒
+     spring.datasource.maxWait=60000
+     #数据源过滤器
+     spring.datasource.filters=stat,wall,slf4j
+     #开启druid监控
+     spring.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+     #================================================数据源配置==============================================================
+
+     #================================================mybatis配置=============================================================
+     #mybatis xml配置文件
+     mybatisp-plus.config-locations=classpath*:mybatis/mybatis-config.xml
+     #mybatis mapper xml所在位置加装
+     mybatis-plus.mapper-locations=classpath*:mybatis/mappers/**/*.xml
+     # 设置mybatis返回值为空是也返回key
+     mybatis-plus.configuration.call-setters-on-nulls=true
+     #查询结果自动映射 到 java类中驼峰命名
+     mybatis-plus.configuration.map-underscore-to-camel-case=true
+     #================================================mybatis配置=============================================================
+
+     #================================================redis配置=============================================================
+     spring.redis.host=docker.meiflower.top
+     spring.redis.port=30379
+     spring.redis.password=Mg19930324@
+     # 连接池最大连接数(使用负值表示没有限制) 默认为8
+     spring.redis.lettuce.pool.max-active=8
+     # 连接池最大阻塞等待时间(使用负值表示没有限制) 默认为-1
+     spring.redis.lettuce.pool.max-wait=-1ms
+     # 连接池中的最大空闲连接 默认为8
+     spring.redis.lettuce.pool.max-idle=8
+     # 连接池中的最小空闲连接 默认为 0
+     spring.redis.lettuce.pool.min-idle=0
+     #================================================redis配置=============================================================
+
+     card.job.hot.cron=0 0/5 * * * ?

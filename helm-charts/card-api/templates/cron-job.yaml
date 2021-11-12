@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: card-cronjob
+  namespace: {{.Values.namespace}}
+spec:
+  schedule: {{.Values.app.emailBackCron}}
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: card-cronjob
+            image: python:3.6.14-alpine
+            command: ["python3", "email_back.py"]
+            workingDir: /opt
+            volumeMounts:
+            - name: sqlite-v
+              mountPath: /opt
+          volumes:
+          - name: sqlite-v
+            hostPath:
+              path: /nfsdata

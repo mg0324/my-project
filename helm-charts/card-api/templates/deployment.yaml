@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.app.name}}
+  namespace: {{.Values.namespace}}
+  labels:
+    app: {{.Values.app.name}}
+spec:
+  replicas: {{.Values.app.replicas}}
+  selector:
+    matchLabels:
+      app: {{.Values.app.name}}
+  template:
+    metadata:
+      labels:
+        app: {{.Values.app.name}}
+    spec:
+      nodeName: master
+      containers:
+      - name: {{.Values.app.name}}
+        image: {{.Values.app.image}}
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: APP_CONFIG
+          value: {{.Values.app.env.config}}
+        - name: JAVA_OPTS
+          value: {{.Values.app.env.javaOpts}}
+        ports:
+        - containerPort: {{.Values.app.targetPort}}
+        volumeMounts:
+        - name: card-cm
+          mountPath: /opt/config
+        - name: sqlite-v
+          mountPath: /data/sqlite
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "200m"
+          limits:
+            memory: "300Mi"
+            cpu: "500m"
+      volumes:
+      - name: card-cm
+        configMap:
+          name: card-config
+          items:
+          - key: application.properties
+            path: application.properties
+      - name: sqlite-v
+        persistentVolumeClaim:
+          claimName: card-pvc

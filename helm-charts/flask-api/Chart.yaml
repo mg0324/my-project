@@ -1,0 +1,4 @@
+apiVersion: v1
+description: mango's flask api service
+name: flask-api
+version: '1.0'

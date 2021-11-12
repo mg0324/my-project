@@ -1,0 +1,4 @@
+apiVersion: v1
+description: mango's card api service
+name: card-api
+version: '1.0'
