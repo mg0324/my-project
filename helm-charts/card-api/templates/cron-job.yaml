@@ -10,7 +10,8 @@ spec:
       backoffLimit: 2
       template:
         spec:
-          restartPolicy: Never
+          restartPolicy: OnFailure
+          nodeName: master
           containers:
           - name: card-cronjob
             image: python:3.6.14-alpine
