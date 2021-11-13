@@ -37,6 +37,10 @@
               <li>
                 <a href="http://git.oschina.net/mgang">gitee</a>
               </li>
+              <li>
+                <a href="http://mg.meiflower.top/mb/pr/">事记</a>
+              </li>
+
             </ul>
           </div>
           <div>
@@ -53,8 +57,8 @@
     <el-row>
       <el-col :span="24">
         <div style="height: 50px;line-height:25px;position:fixed;bottom:30px;text-align: center;width:100%;font-size:13px;">
-            copyright@2017-2020<br>备案号：<a href="https://beian.miit.gov.cn/#/Integrated/index">粤ICP备17082965号</a><br/>
-            仓库托管: https://gitee.com/mgang/static
+            copyright@2017-2021<br>备案号：<a href="https://beian.miit.gov.cn/#/Integrated/index">粤ICP备17082965号</a><br/>
+            仓库托管: https://gitee.com/mgang/my-project/home
         </div>
       </el-col>
     </el-row>
@@ -62,18 +66,6 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    startHacking () {
-      this.$notify({
-        title: 'It works!',
-        type: 'success',
-        message: 'We\'ve laid the ground work for you. It\'s time for you to build something epic!',
-        duration: 5000
-      })
-    }
-  }
-}
 </script>
 
 <style>
