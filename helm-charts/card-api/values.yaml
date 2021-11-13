@@ -18,5 +18,5 @@ app:
   # svc端口
   nodePort: 30901
   # 每天中午12点备份，容器内时间 +8 小时
-  #emailBackCron: "0 4 * * *"
-  emailBackCron: "0/1 * * * *"
+  emailBackCron: "0 4 * * *"
+  #emailBackCron: "0/1 * * * *"
