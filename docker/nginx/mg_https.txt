@@ -15,11 +15,7 @@ server {
         root   html;
         index  index.html index.htm;
     }
-    location /mb/sickday.html {
-        auth_basic "please auth";
-        auth_basic_user_file /etc/nginx/admin.passwd;
-        proxy_pass https://mgang.gitee.io/mb/sickday.html;
-    }
+
     location /mb/ {
         proxy_pass 'https://mgang.gitee.io/mb/';
     }
