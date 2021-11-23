@@ -15,18 +15,39 @@ server {
         root   html;
         index  index.html index.htm;
     }
-    location /card {
-        proxy_pass http://mg.meiflower.top:30901/card;
-    }
-    location /api {
-        proxy_pass http://docker.meiflower.top:30002/;
+    location /mb/sickday.html {
+        auth_basic "please auth";
+        auth_basic_user_file /etc/nginx/admin.passwd;
+        proxy_pass https://mgang.gitee.io/mb/sickday.html;
     }
     location /mb/ {
         proxy_pass 'https://mgang.gitee.io/mb/';
+    }
+    location /card {
+        proxy_pass http://mg.meiflower.top:30901/card;
+    }
+    location /api/ {
+        proxy_pass http://docker.meiflower.top:30002/;
     }
     location /mb/sickday.html {
         auth_basic "please auth";
         auth_basic_user_file /etc/nginx/admin.passwd;
         proxy_pass https://mgang.gitee.io/mb/sickday.html;
+    }
+    location /mr/ {
+        proxy_pass https://mgang.gitee.io/mr/;
+    }
+    location /mango-kit/ {
+        proxy_pass https://mgang.gitee.io/mango-kit/;
+    }
+    location /plan/ {
+        auth_basic "please auth";
+        auth_basic_user_file /etc/nginx/admin.passwd;
+        proxy_pass https://mgang.gitee.io/plan/;
+    }
+    location /workstay/ {
+        auth_basic "please auth";
+        auth_basic_user_file /etc/nginx/admin.passwd;
+        proxy_pass https://mgang.gitee.io/workstay/;
     }
 }
