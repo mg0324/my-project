@@ -4,7 +4,7 @@
       "id": "1",
       "title": "芒果网盘",
       "iconType": "ios-save",
-      "url": "http://disk.meiflower.top"
+      "url": "https://disk.meiflower.top"
     },
     {
       "id": "2",
@@ -28,13 +28,13 @@
       "id": "5",
       "title": "看云深入学习",
       "iconType": "md-book",
-      "url": "http://doc.meiflower.top"
+      "url": "https://deepstudy.meiflower.top"
     },
     {
       "id": "6",
       "title": "看云工作总结",
       "iconType": "md-book",
-      "url": "http://worksum.meiflower.top"
+      "url": "https://mg.meiflower.top"
     }
   ]
 }
