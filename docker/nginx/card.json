@@ -10,19 +10,19 @@
       "id": "2",
       "title": "梦网轻博客",
       "iconType": "md-snow",
-      "url": "http://mg.meiflower.top/mb"
+      "url": "https://mg.meiflower.top/mb"
     },
     {
       "id": "3",
       "title": "我的计划",
       "iconType": "md-today",
-      "url": "http://www.meiflower.top/plan/"
+      "url": "https://www.meiflower.top/plan/"
     },
     {
       "id": "4",
       "title": "我的简历",
       "iconType": "md-person",
-      "url": "http://mg.meiflower.top/mr"
+      "url": "https://mg.meiflower.top/mr"
     },
     {
       "id": "5",
@@ -34,6 +34,18 @@
       "id": "6",
       "title": "看云工作总结",
       "iconType": "md-book",
+      "url": "https://mg.meiflower.top"
+    },
+    {
+      "id": "7",
+      "title": "mango-kit",
+      "iconType": "md-build",
+      "url": "https://mg.meiflower.top/mango-kit"
+    },
+    {
+      "id": "8",
+      "title": "关于我",
+      "iconType": "md-happy",
       "url": "https://mg.meiflower.top"
     }
   ]
