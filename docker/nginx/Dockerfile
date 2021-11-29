@@ -14,3 +14,5 @@ MAINTAINER mangomei
 COPY cert /etc/nginx/cert/
 # auth passwd
 COPY admin.passwd /etc/nginx/admin.passwd
+# 复制nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
