@@ -1,0 +1,4 @@
+apiVersion: v1
+description: mango's mysql server service
+name: mysql-server
+version: '1.0'

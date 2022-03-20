@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.app.name}}
+  namespace: {{.Values.namespace}}
+  labels:
+    app: {{.Values.app.name}}
+spec:
+  replicas: {{.Values.app.replicas}}
+  selector:
+    matchLabels:
+      app: {{.Values.app.name}}
+  template:
+    metadata:
+      labels:
+        app: {{.Values.app.name}}
+    spec:
+      #nodeName: master
+      containers:
+      - name: {{.Values.app.name}}
+        image: {{.Values.app.image}}
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: {{.Values.app.mysqlPassword}}
+        ports:
+        - containerPort: {{.Values.app.targetPort}}
+        volumeMounts:
+        - name: mysql-v
+          mountPath: /var/lib/mysql #MySQL容器的数据都是存在这个目录的，要对这个目录做数据持久化
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "500m"
+          limits:
+            memory: "1000Mi"
+            cpu: "1000m"
+      volumes:
+      - name: mysql-v
+        persistentVolumeClaim:
+          claimName: mysql-pvc
