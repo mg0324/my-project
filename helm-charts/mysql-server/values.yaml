@@ -1,5 +1,5 @@
 # 命名空间
-namespace: mysql
+namespace: default
 # 应用相关
 app:
   # 应用名称
@@ -11,5 +11,5 @@ app:
   # 容器端口
   targetPort: 3306
   # svc端口
-  nodePort: 33306
-  mysqlPassword: !Qaz2wsx
+  nodePort: 32306
+  mysqlPassword: a123456
