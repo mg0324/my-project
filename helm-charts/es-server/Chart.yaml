@@ -1,0 +1,4 @@
+apiVersion: v1
+description: mango's es server service
+name: es-server
+version: '1.0'
