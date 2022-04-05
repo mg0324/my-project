@@ -30,8 +30,8 @@ spec:
         volumeMounts:
         - name: card-cm
           mountPath: /opt/config
-        - name: sqlite-v
-          mountPath: /data/sqlite
+        - name: card-v
+          mountPath: /data
         resources:
           requests:
             memory: "100Mi"
@@ -46,6 +46,6 @@ spec:
           items:
           - key: application.properties
             path: application.properties
-      - name: sqlite-v
+      - name: card-v
         persistentVolumeClaim:
           claimName: card-pvc

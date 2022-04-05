@@ -25,7 +25,7 @@ data:
       #数据源驱动类
       spring.datasource.driverClassName=org.sqlite.JDBC
       #数据源链接地址
-      spring.datasource.url=jdbc:sqlite:/data/sqlite/card2.db
+      spring.datasource.url=jdbc:sqlite:/data/sqlite/card4.db
       #数据源账号
       spring.datasource.username=
       #数据源密码
@@ -69,5 +69,12 @@ data:
       # 连接池中的最小空闲连接 默认为 0
       spring.redis.lettuce.pool.min-idle=0
       #================================================redis配置=============================================================
-      
+
+      #================================================其他配置=============================================================
+      # 缓存定时任务cron
       card.job.hot.cron=0 0/5 * * * ?
+      # lucene索引保存位置
+      card.index.dir=/data/lucene
+
+      #================================================其他配置=============================================================
+

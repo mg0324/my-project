@@ -18,9 +18,9 @@ spec:
             command: ["python3", "email_back.py"]
             workingDir: /opt
             volumeMounts:
-            - name: sqlite-v
+            - name: card-v
               mountPath: /opt
           volumes:
-          - name: sqlite-v
+          - name: card-v
             hostPath:
-              path: /nfsdata
+              path: /nfsdata/sqlite
