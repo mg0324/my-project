@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.app.name}}
+  namespace: {{.Values.namespace}}
+  labels:
+    app: {{.Values.app.name}}
+spec:
+  replicas: {{.Values.app.replicas}}
+  selector:
+    matchLabels:
+      app: {{.Values.app.name}}
+  template:
+    metadata:
+      labels:
+        app: {{.Values.app.name}}
+    spec:
+      nodeName: node1
+      containers:
+      - name: {{.Values.app.name}}
+        image: {{.Values.app.image}}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{.Values.app.targetPort}}
+        volumeMounts:
+          - name: home-v
+            mountPath: /docs
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "200m"
+          limits:
+            memory: "200Mi"
+            cpu: "500m"
+      volumes:
+        - name: home-v
+          persistentVolumeClaim:
+            claimName: home-pvc

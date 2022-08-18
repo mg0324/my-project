@@ -1,0 +1,4 @@
+apiVersion: v1
+description: mango's nginx plan service
+name: nginx-plan
+version: '1.0'
