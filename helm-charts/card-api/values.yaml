@@ -7,7 +7,7 @@ app:
   # 应用副本数
   replicas: 1
   # 应用镜像
-  image: mangomei/card:4.0.1-20220405
+  image: mangomei/card:4.0.1-2022040502
   env:
     # 应用配置
     config: /opt/config/application.properties
