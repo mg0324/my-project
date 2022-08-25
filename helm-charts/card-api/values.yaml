@@ -7,11 +7,12 @@ app:
   # 应用副本数
   replicas: 1
   # 应用镜像
-  image: mangomei/card:4.0.1-2022040502
+  image: mangomei/card:latest
   env:
     # 应用配置
     config: /opt/config/application.properties
     # jvm 参数
+    #javaOpts: "-Xms200m -Xmx200m -Xmn120m -XX:MetaspaceSize=80m -XX:MaxMetaspaceSize=200m -Xverify:none -XX:+UseG1GC"
     javaOpts:
   # 容器端口
   targetPort: 9001
