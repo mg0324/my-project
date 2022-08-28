@@ -1,9 +1,10 @@
 # 猫大刚主页 <small>1.0</small>
 
-> 关于Mango Mei的主页
+> 本主页由[docsify](https://docsify.js.org/#/zh-cn/)构建
 
 - 整理关于自己的经历
-- 记录一些工具的入口
+- 记录前端热门技术
+- 记录后端语言技术
 - mango mei © 2022 粤ICP备17082965号
 
 [GitHub](https://github.com/mg0324/)

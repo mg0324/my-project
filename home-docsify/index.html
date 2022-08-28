@@ -46,9 +46,42 @@
         pre: '',
         style: 'text-align: center;',
         class: 'className'
+      },
+      vueComponents: {
+        'button-counter': {
+          template: `
+            <button @click="count2 += 1">
+              You clicked me {{ count2 }} times
+            </button>
+          `,
+          data() {
+            return {
+              count2: 0,
+            };
+          }
+        },
+        'card-view': {
+          template: `
+            <a :href="href" target="_blank">
+              预览卡片({{title}})
+            </a>
+          `,
+          props:["id","title"],
+          computed: {
+            href(){
+              return "http://mg.meiflower.top/cardview/index.html?id="+this.id;
+            }
+          },
+          data() {
+            return {
+              
+            }
+          }
+        }
       }
     }
   </script>
+  <script src="//cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <!-- 搜索 -->
@@ -69,5 +102,21 @@
   <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script> -->
+  <script src="/cardview.js"></script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var host = window.location.host;
+      if(host.startsWith("localhost") || host.startsWith("127.0.0.1")){
+        return ;
+      }
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?17b94311795f1539081c4a0a0f14d4fb";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    
+    </script>
+    
 </body>
 </html>

@@ -1,4 +1,3 @@
-* [Linux](/linux)
 * 快速跳转
 
   * [GitHub](https://github.com/mg0324/)

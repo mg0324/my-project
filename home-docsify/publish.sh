@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-
-scp * root@node:/docs
+sh ../autod.sh $1
+scp -r * root@node:/docs
