@@ -7,6 +7,12 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    .markdown-section iframe {
+      border: 1px solid #eee;
+      min-width: 0 !important;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
@@ -48,19 +54,7 @@
         class: 'className'
       },
       vueComponents: {
-        'button-counter': {
-          template: `
-            <button @click="count2 += 1">
-              You clicked me {{ count2 }} times
-            </button>
-          `,
-          data() {
-            return {
-              count2: 0,
-            };
-          }
-        },
-        'card-view': {
+        'card-link': {
           template: `
             <a :href="href" target="_blank">
               预览卡片({{title}})
@@ -71,6 +65,84 @@
             href(){
               return "http://mg.meiflower.top/cardview/index.html?id="+this.id;
             }
+          },
+          data() {
+            return {
+              
+            }
+          }
+        },
+        'card-area': {
+          template: `
+           <div>
+            <iframe  :src="href" :style="{width:cardWidth,height:cardHeight}"></iframe>
+           </div>
+          `,
+          props:["id","height","width"],
+          computed: {
+            theId(){
+              return "card_" + this.id;
+            },
+            href(){
+              return "http://mg.meiflower.top/cardview/index.html?id="+this.id;
+            },
+            cardHeight(){
+              var result = "400px";
+              if(this.height){
+                result = this.height;
+              }
+              return result;
+            },
+            cardWidth(){
+              var result = "100%";
+              if(this.width){
+                result = this.width;
+              }
+              return result;
+            }
+          },
+          created() {
+            
+          },
+          data() {
+            return {
+              
+            }
+          }
+        },
+        'card-area-list': {
+          template: `
+           <div>
+            <iframe v-for="href in hrefs" :src="href" :style="{width:cardWidth,height:cardHeight,float:'left',marginRight:'5px'}"></iframe>
+           </div>
+          `,
+          props:["ids","height","width"],
+          computed: {
+            hrefs(){
+              var list = [];
+              var arr = this.ids.split(",");
+              for(var index in arr){
+                list.push("http://mg.meiflower.top/cardview/index.html?id="+arr[index]);
+              }
+              return list;
+            },
+            cardHeight(){
+              var result = "400px";
+              if(this.height){
+                result = this.height;
+              }
+              return result;
+            },
+            cardWidth(){
+              var result = "100%";
+              if(this.width){
+                result = this.width;
+              }
+              return result;
+            }
+          },
+          created() {
+            
           },
           data() {
             return {
@@ -102,7 +174,9 @@
   <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script> -->
-  <script src="/cardview.js"></script>
+  <!-- 引入 layui.js -->
+  <script src="//unpkg.com/layui@2.7.6/dist/layui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/heyui"></script>
   <script>
     var _hmt = _hmt || [];
     (function() {

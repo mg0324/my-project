@@ -47,6 +47,12 @@
       "title": "关于我",
       "iconType": "md-happy",
       "url": "https://www.meiflower.top"
+    },
+    {
+      "id": "9",
+      "title": "猫大刚主页",
+      "iconType": "md-happy",
+      "url": "https://mg.meiflower.top"
     }
   ]
 }

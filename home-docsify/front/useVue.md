@@ -34,10 +34,10 @@ markdown内的第一个script内初始化vue代码如下：
 
 ## 全局使用Vue
 请先在index.html页面内注册全局组件。
-如下是笔者自定义的卡片预览全局vue组件card-view。
+如下是笔者自定义的卡片预览全局vue组件card-link。
 ``` javascript
 window.$docsify = {
-    'card-view': {
+    'card-link': {
         template: `
         <a :href="href" target="_blank">
             预览卡片({{title}})
@@ -59,12 +59,12 @@ window.$docsify = {
 ```
 既然是全局组件，那么就可以在md中使用。
 ``` markdown
-* <card-view id="5f3245cc14434434810bece36ea97125" title="5大并发级别"></card-view>
-* <card-view id="3b102ecec0474a74a18dc51ad1f6b7e1" title="CPU各种频率"></card-view>
+* <card-link id="5f3245cc14434434810bece36ea97125" title="5大并发级别"/>
+* <card-link id="3b102ecec0474a74a18dc51ad1f6b7e1" title="CPU各种频率"/>
 ```
 效果如下：
-* <card-view id="5f3245cc14434434810bece36ea97125" title="5大并发级别"></card-view>
-* <card-view id="3b102ecec0474a74a18dc51ad1f6b7e1" title="CPU各种频率"></card-view>
+* <card-link id="5f3245cc14434434810bece36ea97125" title="5大并发级别"/>
+* <card-link id="3b102ecec0474a74a18dc51ad1f6b7e1" title="CPU各种频率"/>
 
 <script>
     (function(){
