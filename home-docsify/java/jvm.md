@@ -15,6 +15,7 @@
 * [一次IDEA启动速度调优](http://mg.meiflower.top/mb/post/idea/IDEA%E7%9A%84%E5%90%AF%E5%8A%A8%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/)
 * [熟悉Java类文件Class的结构](http://mg.meiflower.top/mb/post/jvm/%E7%86%9F%E6%82%89Java%E7%B1%BB%E6%96%87%E4%BB%B6class%E7%BB%93%E6%9E%84/)
 * [熟悉JVM字节码指令](http://mg.meiflower.top/mb/post/jvm/%E7%86%9F%E6%82%89JVM%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4/)
+* [JVM字节码指令表](/java/bytecode.md)
 * [深入类加载机制](http://mg.meiflower.top/mb/post/jvm/%E6%B7%B1%E5%85%A5%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/)
 * 类加载器
 
