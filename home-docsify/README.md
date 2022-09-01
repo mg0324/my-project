@@ -1,26 +1,46 @@
 <!-- 引入 layui.css -->
 <link href="//unpkg.com/layui@2.7.6/dist/css/layui.css" rel="stylesheet">
 
-## 猫大刚 * Mango Mei
-<i class="layui-icon layui-icon-email" style="color:green;"></i> 邮箱：1092017732@qq.com <br/>
-<i class="layui-icon layui-icon-login-wechat" style="color:green;"></i> 微信：meigangww<br/>
-<i class="layui-icon layui-icon-read" style="color:green;"></i> 博客：http://mg.meiflower.top/mb/ <br/>
-<i class="layui-icon layui-icon-star" style="color:green;"></i> csdn：https://blog.csdn.net/mg0324 
-
-## 经历
-<div id="container">
-    <ul class="layui-timeline">
-        <li class="layui-timeline-item" v-for="(node,index) in nodes" :key="index">
-            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-            <div class="layui-timeline-content layui-text">
-            <div class="layui-timeline-title">{{node.year}}</div>
-            <p v-for="remark in node.remarks">
-                {{remark}}
-            </p>
+<div class="layui-row">
+    <div class="layui-col-md3">
+        <div class="layui-fluid" style="text-align:center;">
+            <img src="./static/head.jpg" style="width:200px;"/><br/>
+            <h6 style="margin-top:5px;">猫大刚 * Mango Mei</h6>
+        </div>
+    </div>
+    <div class="layui-col-md9">
+        <fieldset class="layui-elem-field">
+            <legend>联系方式</legend>
+            <div class="layui-field-box">
+                <i class="layui-icon layui-icon-email" style="color:green;"></i> 邮箱：1092017732@qq.com <br/>
+                <i class="layui-icon layui-icon-login-wechat" style="color:green;"></i> 微信：meigangww<br/>
+                <i class="layui-icon layui-icon-read" style="color:green;"></i> 博客：http://mg.meiflower.top/mb/ <br/>
+                <i class="layui-icon layui-icon-star" style="color:green;"></i> csdn：https://blog.csdn.net/mg0324 
             </div>
-        </li>
-    </ul>
+        </fieldset>
+        <div id="container">
+            <fieldset class="layui-elem-field">
+                <legend>经历</legend>
+                <div class="layui-field-box">
+                    <ul class="layui-timeline">
+                        <li class="layui-timeline-item" v-for="(node,index) in nodes" :key="index">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">{{node.year}}</div>
+                            <p v-for="remark in node.remarks">
+                                {{remark}}
+                            </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </fieldset>
+        </div>
+    </div>
 </div>
+
+
+
 
 <script>
     (function(){
