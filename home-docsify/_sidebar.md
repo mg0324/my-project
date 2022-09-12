@@ -10,5 +10,7 @@
     - [Dubble](micros/dubble.md)
 - devOps
     - [K8S](devops/k8s.md)
+- 工具
+    - [IDEA](tools/idea.md)
 - [Linux](linux.md)
 
