@@ -1,46 +1,53 @@
 <!-- 引入 layui.css -->
 <link href="//unpkg.com/layui@2.7.6/dist/css/layui.css" rel="stylesheet">
 
-<div class="layui-row">
-    <div class="layui-col-md3">
-        <div class="layui-fluid" style="text-align:center;">
-            <img src="./static/head.jpg" style="width:200px;"/><br/>
-            <h6 style="margin-top:5px;">猫大刚 * Mango Mei</h6>
-        </div>
-    </div>
-    <div class="layui-col-md9">
-        <fieldset class="layui-elem-field">
-            <legend>联系方式</legend>
-            <div class="layui-field-box">
-                <i class="layui-icon layui-icon-email" style="color:green;"></i> 邮箱：1092017732@qq.com <br/>
-                <i class="layui-icon layui-icon-login-wechat" style="color:green;"></i> 微信：meigangww<br/>
-                <i class="layui-icon layui-icon-read" style="color:green;"></i> 博客：http://mg.meiflower.top/mb/ <br/>
-                <i class="layui-icon layui-icon-star" style="color:green;"></i> csdn：https://blog.csdn.net/mg0324 
+<style type="text/css">
+.layui-row{
+    display: flex;
+    flex-flow: row wrap;
+    align-content: space-between;
+}
+.layui-row a{
+    color: white;
+}
+.layui-row a:hover{
+    text-decoration:underline;
+}
+.layui-row div{
+    border: 1px solid gray;
+    height:50px;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+.layui-row .has {
+    background-color: green;
+    color: white;
+}
+
+.layui-row .no {
+    background-color: white;
+    color: black;
+}
+</style>
+
+<div id="container" class="layui-container">
+    <fieldset class="layui-elem-field" style="padding: 10px;" v-for="(item,index) in nodes">
+        <legend>{{item.moduleName}}</legend>
+        <div class="layui-row">
+            <div v-if="finish(part)" class="layui-col-xs12 layui-col-sm12 layui-col-md2 has" v-for="(part,index) in item.parts">
+                <a :href="theHref(part)">{{theName(part)}}</a>
             </div>
-        </fieldset>
-        <div id="container">
-            <fieldset class="layui-elem-field">
-                <legend>经历</legend>
-                <div class="layui-field-box">
-                    <ul class="layui-timeline">
-                        <li class="layui-timeline-item" v-for="(node,index) in nodes" :key="index">
-                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                            <div class="layui-timeline-content layui-text">
-                            <div class="layui-timeline-title">{{node.year}}</div>
-                            <p v-for="remark in node.remarks">
-                                {{remark}}
-                            </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </fieldset>
+            <div v-else class="layui-col-xs12 layui-col-sm12 layui-col-md2 no">
+                {{theName(part)}}
+            </div>
         </div>
-    </div>
+    </fieldset>
 </div>
-
-
-
 
 <script>
     (function(){
@@ -50,39 +57,86 @@
                 return {
                     nodes: [
                         {
-                            year: '2021年4月',
-                            remarks: [
-                                "4月17号离开浪潮，结束了5年多的电子政务行业经历，进入平安做hr平台相关业务。",
-                                "开始实践spring cloud微服务和docker容器自动化部署，以及k8s容器编排相关技术。"
-                            ]
+                            moduleName: 'DevOps',
+                            parts:['GitLab','Maven','Jekins','Docker','Kuberneters']
                         },
                         {
-                            year: '2017年',
-                            remarks: [
-                                "2017年，来到深圳，加入浪潮。从事电子政务行业，为人民群众提供更好的办事体验，可跳转深圳网上办事大厅。参与政务大厅，网上预约，公安系统等平台的建设；快速积累行业经验，沉淀开发技术。",
-                                "从jquery到react到vue，从传统系统到 前后台分离体系，从单系统到分布式，从普通组员到小组长，从后端到关注全栈，各方面都得以提升。"
-                            ]
+                            moduleName: '高可用',
+                            parts:['HAProxy','KeepAlived']
                         },
                         {
-                            year: '2015年-2016年',
-                            remarks: [
-                                "在广州工作，接触电子政务，交易服务，房地产系统和医院门户网站的领域，慢慢的积累工作经验。"
-                            ]
+                            moduleName: '高性能Web',
+                            parts:['Nginx','Openresty']
                         },
                         {
-                            year: '2015年7月',
-                            remarks: [
-                                "毕业于普通本科（二本）院校，湖北文理学院。在校期间， 完成了朋友社区、 襄阳内容管理系统和 毕业设计权限控制 等3个系统。"
-                            ]
+                            moduleName: '分库分表',
+                            parts:['Sharding JDBC','MyCat']
                         },
                         {
-                            year: '2015年1月',
-                            remarks: [
-                                "到佛山实习，接触到社区矫正和智慧公路领域。"
-                            ]
+                            moduleName: '分布式存储',
+                            parts:['FastDFS','HDFS']
+                        },
+                        {
+                            moduleName: '分布式消息队列',
+                            parts:['Kafka','RocketMQ','RabbitMQ']
+                        },
+                        {
+                            moduleName: '分布式缓存',
+                            parts:['Redis','Memcache']
+                        },
+                        {
+                            moduleName: '分布式理论',
+                            parts:['CAP','Raft','一致性Hash算法']
+                        },
+                        {
+                            moduleName: '工具集',
+                            parts:['IDEA','Git','Maven','Grade','UML']
+                        },
+                        {
+                            moduleName: '微服务',
+                            parts:['Spring Cloud','Dubble']
+                        },
+                        {
+                            moduleName: '源码阅读',
+                            parts:['JDK相关','Spring','Netty','Zookeeper']
+                        },
+                        {
+                            moduleName: 'Java调优',
+                            parts:['MySQL调优','JVM调优','Tomcat调优','线程池调优']
+                        },
+                        {
+                            moduleName: '数据库',
+                            parts:['MySQL','Oracle','PostgreSQL','Sqlite']
+                        },
+                        {
+                            moduleName: '框架',
+                            parts:['Spring','Spring Boot','Mybatis','Mybatis Plus','Netty']
+                        },
+                        {
+                            moduleName: 'Java核心',
+                            parts:['Java基础','Java Web','Java IO','Java并发@1@/java/juc','Java虚拟机@1@/java/jvm']
+                        },
+                        {
+                            moduleName: '编程基石',
+                            parts:['数据结构','算法','设计模式']
+                        },
+                        {
+                            moduleName: '计算机基础',
+                            parts:['计算机组成原理','计算机网络','操作系统']
                         }
                     ]
                 };
+            },
+            methods: {
+                theName(v){
+                    return v.split('@')[0];
+                },
+                theHref(v){
+                    return v.split('@')[2];
+                },
+                finish(v){
+                    return '1' == v.split('@')[1];
+                }
             }
         });
     })();
