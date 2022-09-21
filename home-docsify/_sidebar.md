@@ -10,8 +10,11 @@
     - [Dubble](micros/dubble.md)
 - devOps
     - [K8S](devops/k8s.md)
+    - [kafka部署](devops/kafka.md)
+    - [fastdfs部署](devops/fastdfs.md)
 - 工具
     - [IDEA](tools/idea.md)
+    - [常用软件](tools/soft.md)
 - Q&A
     - [长度问题](qa/for-len.md)
     - [Redis相关](qa/redis.md)
