@@ -15,7 +15,11 @@
     }
     :root {
       --docsifytabs-border-color: #ededed;
-      --docsifytabs-tab-highlight-color: green;
+      --docsifytabs-tab-highlight-color: #42b983;
+    }
+    .accordion.active {
+        background: rgba(0, 0, 0, 0.1);
+        border-left: 3px solid #42b983 !important;
     }
   </style>
   <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -185,8 +189,8 @@
         size: 32,           	// 数值，组件大小，默认值32。
         bottom: 15,         	// 数值，组件底部偏移距离，默认值15。
         right: 15,          	// 数值，组件右侧偏移距离，默认值15。
-        logo: '🔝',				// logo:字符串或svg矢量图代码，默认为svg代码图标。
-        bgColor: '\#2096ff'    	// 背景颜色，#fff、pink等，logo为svg图标时，不填。
+        logo: 'top',				// logo:字符串或svg矢量图代码，默认为svg代码图标。
+        bgColor: '#42b983'    	// 背景颜色，#fff、pink等，logo为svg图标时，不填。
       }
     }
   </script>

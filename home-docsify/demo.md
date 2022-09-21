@@ -28,3 +28,7 @@ Bonjour!
 Ciao!
 
 <!-- tabs:end -->
+
+
+* <card-link id="3b102ecec0474a74a18dc51ad1f6b7e1" title="CPU各种频率"/>
+
