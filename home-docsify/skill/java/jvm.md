@@ -5,7 +5,7 @@
 * [Mac10.15.7上编译OpenJDK8u](http://mg.meiflower.top/mb/post/jvm/MacOs10_15_7%E7%BC%96%E8%AF%91openjdk8u/)
 
 ## 内存区域
-* 熟悉JVM内存区域
+* [熟悉JVM内存区域](http://mg.meiflower.top/mb/post/jvm/%E7%86%9F%E6%82%89JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/)
 * [熟悉HotSpot中的对象](http://mg.meiflower.top/mb/post/jvm/%E7%86%9F%E6%82%89HotSpot%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1/)
 * [如何计算Java对象的大小](http://mg.meiflower.top/mb/post/jvm/%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%A4%A7%E5%B0%8F/)
 
@@ -34,6 +34,8 @@
 
 
 ## 字节码执行引擎
+* 认识并熟悉虚拟机栈
+* 基于栈的字节码解释执行引擎
 
 ## 前端编译与优化
 * javac编译器
