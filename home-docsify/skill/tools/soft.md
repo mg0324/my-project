@@ -1,3 +1,4 @@
+> 部分资源已上传到[蓝奏云](https://pc.woozooo.com/mydisk.php)。
 ## window系统软件
 ### 设计类
 * PowerDesigner 一款数据库原型设计工具 

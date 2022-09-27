@@ -8,5 +8,9 @@
 + Kafka的ack机制，有哪些值?分别表示什么含义？ +
 
     有3个值，分别是1，0，-1（或者all)。
-    
+
     <card-area id="fa89ac7b44404e5a82334e3cab20840e" height="300px"/>
+
++ Kafka的ISR机制？ +
+
+    kafka用来同步

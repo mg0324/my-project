@@ -5,7 +5,7 @@
 
 [fastdfs作者github](https://github.com/happyfish100)
 
-![](../static/fastdfs//01.png)
+![](../../static/skill/fastdfs/01.png)
 
 ### Tracker Server
 * 跟踪服务器，主要做调度工作，起到均衡的作用；
@@ -36,7 +36,7 @@
 ### 应用资源安装表
 > 本文使用docker来安装部署fdfs集群的实践。
 
-![](../static/fastdfs/02.png)
+![](../../static/skill/fastdfs/02.png)
 
 |  服务器  |              运行进程               |  服务器ip  |     端口     |      备注      |
 | :------: | :---------------------------------: | :--------: | :----------: | :------------: |
@@ -338,7 +338,7 @@ cd fastdfs-5.11
 
     访问测试：
 
-    ![](../static/fastdfs/03.png)
+    ![](../../static/skill/fastdfs/03.png)
 
 
 ### 部署stroage2 + nginx
@@ -373,7 +373,7 @@ cd fastdfs-5.11
 
 4. 测试nginx访问下载
 
-    ![](../static/fastdfs//04.png)
+    ![](../../static/skill/fastdfs/04.png)
 
 ## 参考文章
 * [FastDFS高可用集群架构配置搭建](https://www.cnblogs.com/sunnydou/p/49b92d511047f4f9da6cd727cfd415d5.html)

@@ -15,7 +15,7 @@
 * [垃圾收集算法](http://mg.meiflower.top/mb/post/jvm/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/)
 * [HotSpot虚拟机垃圾算法实现之枚举根节点、安全点和安全区域](http://mg.meiflower.top/mb/post/jvm/HotSpot%E5%9E%83%E5%9C%BE%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E4%B9%8B%E6%9E%9A%E4%B8%BE%E6%A0%B9%E8%8A%82%E7%82%B9%E5%92%8C%E5%AE%89%E5%85%A8%E7%82%B9%E5%AE%89%E5%85%A8%E5%8C%BA%E5%9F%9F/)
 * [HotSpot虚拟机垃圾算法实现之记忆集与卡表和写屏障](http://mg.meiflower.top/mb/post/jvm/HotSpot%E5%9E%83%E5%9C%BE%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E4%B9%8B%E8%AE%B0%E5%BF%86%E9%9B%86%E5%8D%A1%E8%A1%A8%E5%92%8C%E5%86%99%E5%B1%8F%E9%9A%9C/)
-* HotSpot虚拟机垃圾算法实现之并发的枚举根节点
+* [HotSpot虚拟机垃圾算法实现之并发的可达性分析](http://mg.meiflower.top/mb/post/jvm/HotSpot%E5%9E%83%E5%9C%BE%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%B9%B6%E5%8F%91%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90/)
 * 常用垃圾收集器
 * [内存分配与回收策略](http://mg.meiflower.top/mb/post/jvm/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%8E%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5/)
 

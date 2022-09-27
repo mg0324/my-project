@@ -36,6 +36,9 @@
 </style>
 
 <div id="container" class="layui-container">
+    <div style="position:fixed;right:10px;bottom:50px;">
+        <img style="width:40px;border:1px solid green;" src="https://mg.meiflower.top/res/okr/okr-202209.png"/>
+    </div>
     <fieldset class="layui-elem-field" style="padding: 10px;" v-for="(item,index) in nodes">
         <legend>{{item.moduleName}}</legend>
         <div class="layui-row">
@@ -114,7 +117,7 @@
                         },
                         {
                             moduleName: 'Java核心',
-                            parts:['Java基础','Java Web','Java IO','Java高并发@1@/java/juc','Java虚拟机@1@/java/jvm']
+                            parts:['Java基础','Java Web','Java IO','Java高并发@1@/skill/java/juc','Java虚拟机@1@/skill/java/jvm']
                         },
                         {
                             moduleName: '编程基石',

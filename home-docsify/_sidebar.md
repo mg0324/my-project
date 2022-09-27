@@ -1,24 +1,30 @@
 - [主页](README.md)
-- 前端
-    - [主流前端](front/all.md)
-    - [Docsify使用vue](front/useVue.md)
-- Java
-    - [Java高并发](java/juc.md)
-    - [Java虚拟机](java/jvm.md)
-- Java微服务
-    - [Spring Cloud](micros/sc.md)
-    - [Dubble](micros/dubble.md)
-- devOps
-    - [K8S](devops/k8s.md)
-    - [kafka部署](devops/kafka.md)
-    - [fastdfs部署](devops/fastdfs.md)
-- 工具
-    - [IDEA](tools/idea.md)
-    - [常用软件](tools/soft.md)
-- Q&A
-    - [长度问题](qa/for-len.md)
-    - [Redis相关](qa/redis.md)
-    - [Kafka相关](qa/kafka.md)
-- [Linux](linux.md)
+- 技术
+    - 前端
+        - [主流前端](skill/front/all.md)
+        - [Docsify使用vue](skill/front/useVue.md)
+    - Java
+        - [Java高并发](skill/java/juc.md)
+        - [Java虚拟机](skill/java/jvm.md)
+    - Java微服务
+        - [Spring Cloud](skill/micros/sc.md)
+        - [Dubble](skill/micros/dubble.md)
+    - 中间件
+        - 分布式消息队列
+            - [kafka](skill/middleware/mq/kafka.md)
+        - 分布式缓存
+            - [redis](skill/middleware/cache/redis.md)
+    - devOps
+        - [K8S](skill/devops/k8s.md)
+        - [kafka部署](skill/devops/kafka.md)
+        - [fastdfs部署](skill/devops/fastdfs.md)
+    - 工具
+        - [IDEA](skill/tools/idea.md)
+        - [常用软件](skill/tools/soft.md)
+    - Q&A
+        - [长度问题](skill/qa/for-len.md)
+        - [Redis相关](skill/qa/redis.md)
+        - [Kafka相关](skill/qa/kafka.md)
+    - [Linux](skill/linux.md)
 - [关于我](aboutme.md)
 
