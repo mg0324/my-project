@@ -26,5 +26,7 @@
         - [Redis相关](skill/qa/redis.md)
         - [Kafka相关](skill/qa/kafka.md)
     - [Linux](skill/linux.md)
+- 世界
+    - [物理](world/physic.md)
 - [关于我](aboutme.md)
 
