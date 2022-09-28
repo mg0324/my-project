@@ -1,0 +1,14 @@
+# 命名空间
+namespace: default
+# 应用相关
+app:
+  # 应用名称
+  name: nginx-mb
+  # 应用副本数
+  replicas: 1
+  # 应用镜像
+  image: mangomei/nginx-mb:1.5
+  # 容器端口
+  targetPort: 80
+  # svc端口
+  nodePort: 30380

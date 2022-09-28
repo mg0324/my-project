@@ -1,0 +1,4 @@
+apiVersion: v1
+description: mango's nginx mb service
+name: nginx-mb
+version: '1.0'
