@@ -3,7 +3,7 @@
 
     最大512M。
 
-    [请跳转查看详细](/qa/for-len?id=redis的key的长度)
+    [请跳转查看详细](/skill/qa/for-len?id=redis的key的长度)
 
 + Redis有多少个数据库? +
 
@@ -14,7 +14,7 @@
     ```
     redis-cli -h 服务器地址 -a 服务器密码 monitor
     ```
-    ![如图monitor](../static/redis/redis-monitor-insight.png)
+    ![如图monitor](../../static/skill/redis/redis-monitor-insight.png)
 
 + Redis如何从海量数据中查询某一个Key? +
     
@@ -30,4 +30,4 @@
 + Redis的key如何以目录形式表示？ +
     
     使用冒号，key的名称如a:b。
-    ![以目录信息展现](../static/redis/key-dir.png)
+    ![以目录信息展现](../../static/skill/redis/key-dir.png)
