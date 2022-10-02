@@ -476,3 +476,29 @@ S  = EN&A + !EN&B (EN与A 或上 非EN与B)
 ##### 电路测试
 
 ![](../../static/skill/basic/compose/cpu/r-s-test.gif )
+
+#### D触发器
+
+##### 定义
+
+D触发器是一个具有记忆功能的，具有两个稳定状态的信息存储器件，是构成多种[时序电路](https://baike.baidu.com/item/%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF/4836638?fromModule=lemma_inlink)的最基本逻辑单元，也是数字逻辑电路中一种重要的单元电路。
+
+D触发器能存储1位的数据，在内存中。（可以用做寄存器）
+
+##### 参数说明
+
+* 输入
+  * EN：是否有效
+  * Data：数据
+* 输出
+  * Q：存储的值
+
+##### 电路实现
+
+![](../../static/skill/basic/compose/cpu/D.png )
+
+##### 电路测试
+
+![](../../static/skill/basic/compose/cpu/D-test.gif)
+
+当EN=1时，Q存储的是D的值。
