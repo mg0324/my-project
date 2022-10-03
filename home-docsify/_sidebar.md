@@ -4,7 +4,9 @@
         - [主流前端](skill/front/all.md)
         - [Docsify使用vue](skill/front/useVue.md)
     - 计算机基石
-        - [计算机组成原理](skill/basic/compose.md)
+        - 计算机组成原理
+          - [缘起](skill/basic/compose-because.md)
+          - [CPU修行](skill/basic/compose-cpu.md)
     - Java
         - [Java高并发](skill/java/juc.md)
         - [Java虚拟机](skill/java/jvm.md)
