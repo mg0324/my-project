@@ -579,7 +579,7 @@ T触发器是在数字电路中，凡在CP时钟脉冲控制下，根据输入�
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/T-counter-test.gif"/>
 
-## 组件
+## 存储器相关组件
 
 ### 8位存储器
 
@@ -684,6 +684,12 @@ T触发器是在数字电路中，凡在CP时钟脉冲控制下，根据输入�
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/8Byte-test.gif"/>
 
+#### 优化后电路
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/8Byte-yh.png"/>
+
+输入优化位CS和WE。（片选信号和写启用信号）
+
 ### 存储器扩展
 
 #### 定义
@@ -701,9 +707,11 @@ T触发器是在数字电路中，凡在CP时钟脉冲控制下，根据输入�
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/16Byte-test.gif"/>
 
 #### 字扩展电路实现
+
 因为16x1是2个8x1的存储器通过字扩展（扩展地址线）组合的，所以需要用到12译码器。（片选其中一个芯片）
 
 ##### 12译码器电路
+
 和38译码器类似。
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/12-select.png"/>
@@ -724,6 +732,27 @@ T触发器是在数字电路中，凡在CP时钟脉冲控制下，根据输入�
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/16x1-test.png"/>
 
 有16个1字节的存储器，通过地址线切换不同的芯片存储数据。
+
+### 存储器的问题
+
+#### 同时读写的问题
+
+可以参考D触发器中Reset和Set不能同时为1的处理逻辑。
+将输入从R和W，调整位WE，表示写启用。
+
+#### 接入片选信号
+
+将片选信号作为输入，作为3态门的输入条件之一。
+
+#### 优化后电路
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/byte-yh.png"/>
+
+#### 优化后电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/8byte-yh-test.png"/>
+
+CS=1，输出无法同时读写。
 
 <script>
 (function(){
