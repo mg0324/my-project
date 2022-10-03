@@ -670,6 +670,17 @@ T触发器是在数字电路中，凡在CP时钟脉冲控制下，根据输入�
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/38S-test.gif"/>
 
+### 8字节存储器
+#### 定义
+组合8个1字节寄存器组件，利用38译码器选中每次要读写的1个字节寄存器来做数据读取和写入。
+
+#### 电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/8Byte.png"/>
+
+#### 电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/8Byte-test.gif"/>
 
 
 <script>
