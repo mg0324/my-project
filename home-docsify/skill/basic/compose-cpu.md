@@ -493,7 +493,7 @@ D触发器能存储1位的数据，在内存中。（可以用做寄存器）
 
 #### 定义
 
-让计算机在上升沿存储数据，在下降沿做其他事情。
+让计算机在上升沿存储数据，在下降沿做其他事情。能够存储一位的信息。
 
 #### 参数说明
 
@@ -578,6 +578,54 @@ T触发器是在数字电路中，凡在CP时钟脉冲控制下，根据输入�
 #### 电路测试
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/T-counter-test.gif"/>
+
+## 组件
+
+### 8位存储器
+
+#### 定义
+
+首先我们知道一个D边沿触发器能存储一位数据，则将8个组合起来存储8位（1个字节）的存储器。
+
+#### 电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/byte.png"/>
+
+#### 电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/byte-test.gif"/>
+
+### 8位3态门开关
+
+#### 定位
+
+当一条线路上连接了多个器件时，需要通过3态门来控制哪些连接，哪些断开。
+
+面对一个8位的输入，因此需要8位的3态门开关对应。
+
+#### 电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/8B-3T.png"/>
+
+
+#### 电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/8B-3T-test.gif"/>
+
+### 8位寄存器
+
+#### 定义
+利用存储器存一个字节数据基础上，加上读写控制位。
+
+#### 电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/register.png"/>
+
+#### 电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/register-test.gif"/>
+
+
 
 
 <script>
