@@ -671,7 +671,9 @@ T触发器是在数字电路中，凡在CP时钟脉冲控制下，根据输入�
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/38S-test.gif"/>
 
 ### 8字节存储器
+
 #### 定义
+
 组合8个1字节寄存器组件，利用38译码器选中每次要读写的1个字节寄存器来做数据读取和写入。
 
 #### 电路实现
@@ -682,6 +684,46 @@ T触发器是在数字电路中，凡在CP时钟脉冲控制下，根据输入�
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/8Byte-test.gif"/>
 
+### 存储器扩展
+
+#### 定义
+
+组合2个8x1的字节的存储器，得到8x2字节的存储器。有2种扩展方式，分别是位扩展和字扩展。
+
+#### 位扩展电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/16Byte.png"/>
+
+如上图，将2个8x1字节的存储器横向组合，使得数据宽度变成了8x2字节，则称为位扩展。
+
+#### 位扩展电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/16Byte-test.gif"/>
+
+#### 字扩展电路实现
+因为16x1是2个8x1的存储器通过字扩展（扩展地址线）组合的，所以需要用到12译码器。（片选其中一个芯片）
+
+##### 12译码器电路
+和38译码器类似。
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/12-select.png"/>
+
+##### 低位交叉编址
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/16x1-L.png"/>
+
+##### 高位交叉编址
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/16x1-H.png"/>
+
+> [!TIP]
+> 低位交叉编址推荐使用，因为低位01交替，这样能交替选择不同片，效率高。（同一个组件连续访问需要有一定间隔）
+
+##### 电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/16x1-test.png"/>
+
+有16个1字节的存储器，通过地址线切换不同的芯片存储数据。
 
 <script>
 (function(){
