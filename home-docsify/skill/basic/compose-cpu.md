@@ -817,6 +817,19 @@ CS=1，输出无法同时读写。
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/POW-test.gif"/>
 
+### 程序计数器PC
+#### 定义
+需要支持写入的增1计数器。
+
+#### 电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/PC.png"/>
+
+#### 电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/PC-test.gif"/>
+
+
 
 ## 应用实践
 ### 半自动加法机
