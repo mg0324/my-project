@@ -744,15 +744,51 @@ T触发器是在数字电路中，凡在CP时钟脉冲控制下，根据输入�
 
 将片选信号作为输入，作为3态门的输入条件之一。
 
-#### 优化后电路
+#### byte优化后电路
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/byte-yh.png"/>
 
-#### 优化后电路测试
+#### byte优化后电路测试
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/8byte-yh-test.png"/>
 
 CS=1，输出无法同时读写。
+
+#### 8x1byte优化后电路
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/8x1-byte-yh.png"/>
+
+#### 8x2byte优化后电路
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/8x2-byte-yh.png"/>
+
+#### 16x1高位优化后电路
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/16x1-byte-H-yh.png"/>
+
+#### 16x1低位优化后电路
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/16x1-byte-L-yh.png"/>
+
+
+### 3位计数器
+#### 定义
+在做片选时，需要在8个芯片中选一个索引，因此需要加1的计数器，范围从0-7。
+所以可以参考[8位行波极速器](/skill/basic/compose-cpu?id=行波计数器)做出3位的计数器。
+
+#### 电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/3CT.png"/>
+
+#### 电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/3CT-test.gif"/>
+
+#### 接入地址输入应用
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/3CT-yy-test.gif"/>
+
+
 
 <script>
 (function(){
