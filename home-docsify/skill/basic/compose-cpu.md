@@ -807,6 +807,8 @@ CS=1，输出无法同时读写。
 * 利用ALU实现加法。
 * 将加好的结果存到寄存器中。
 
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/half-ALU-ROM.png"/>
+
 #### 电路实现
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/half-ALU.png"/>
