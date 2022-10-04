@@ -841,6 +841,19 @@ CS=1，输出无法同时读写。
 
 
 ### 全自动加法机
+#### 说明
+基于[POW开机电路](/skill/basic/compose-cpu?id=开机电路)，将上面半自动加法机修改为全自动加法机。
+
+#### 电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/auto-ALU.png"/>
+
+在时钟下降沿时读取ROM中的值做加法，在上升沿的时候将加法结果存到寄存器。
+
+#### 电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/auto-ALU-test.gif"/>
+
 
 <script>
 (function(){
