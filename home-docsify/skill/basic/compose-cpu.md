@@ -829,6 +829,22 @@ CS=1，输出无法同时读写。
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/PC-test.gif"/>
 
+### 内存控制器
+#### 说明
+其实[存储器相关](/skill/basic/compose-cpu?id=存储器相关组件)的就是内存，但是没有提供的RAM好用。
+
+#### 电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/MC-1.png"/>
+
+用来控制RAM内存的。
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/MC-2.png"/>
+
+#### 电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/MC-test.jpg"/>
+
 
 
 ## 应用实践
