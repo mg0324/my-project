@@ -845,7 +845,10 @@ CS=1，输出无法同时读写。
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/MC-test.jpg"/>
 
+### 总线
+可以理解为就是一条线，连接到总线上的组件需要有3态门的支持。（某一个时刻只有一个连通）
 
+目前计算机中有数据总线、地址总线、指令总线等。
 
 ## 应用实践
 ### 半自动加法机
@@ -882,6 +885,85 @@ CS=1，输出无法同时读写。
 #### 电路测试
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/auto-ALU-test.gif"/>
+
+## 微程序控制
+### 说明
+用微程序来实现指令系统或某些特定控制功能。
+
+### 应用示例说明
+有如下RAM内存：
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/RAM.jpg"/>
+
+内存里00地址的值为3，01地址的值为4，02地址的值为9。
+计算9-(3+4)=2结果设置到第03地址上。
+
+### 前置处理
+让ALU加上三态门，支持连接到总线上。
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/ALU-with-bus.png"/>
+
+### 电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/micro-app.png"/>
+
+其中微程序控制序列存在ROM中，通过位状态来控制电路运行。
+
+### python编写微程序
+``` python
+A_WE = 2 ** 0
+A_CS = 2 ** 1
+
+B_WE = 2 ** 2
+B_CS = 2 ** 3
+
+ALU_SUB = 2 ** 4
+ALU_EN = 2 ** 5
+
+C_WE = 2 ** 6
+C_CS = 2 ** 7
+
+MC_WE = 2 ** 8
+MC_CS = 2 ** 9
+
+PC_WE = 2 ** 10
+PC_EN = 2 ** 11
+PC_CS = 2 ** 12
+
+HLT = 2 ** 15
+
+micro = [
+    # 内存里1地址的数据放到总线上，并存到A寄存器中,PC计数器加一
+    A_WE | A_CS | MC_CS | PC_EN | PC_CS | PC_WE,
+    # 将内存里2地址的数据写到B寄存器中
+    B_WE | B_CS | MC_CS,
+    # A寄存器值加B寄存器值计算加法，将结果存到C寄存器，PC计数器加一
+    A_CS | B_CS | ALU_EN | C_CS | C_WE | PC_EN | PC_CS | PC_WE,
+    # 将C寄存器里的加法结果写入到B寄存器
+    B_WE | B_CS | C_CS,
+    # 将内存地址3上的数据存到寄存器A
+    A_WE | A_CS | MC_CS,
+    # A寄存器值减B寄存器值，将结果存到C寄存器，PC计数器加一
+    A_CS | B_CS | ALU_EN | ALU_SUB | C_CS | C_WE | PC_EN | PC_CS | PC_WE,
+    # 将C寄存器里的结果写入到内存地址4中
+    MC_WE | MC_CS | C_CS,
+    # 停止
+    HLT,
+]
+
+with open('micro.bin', 'wb') as f:
+    for var in micro:
+        byte = var.to_bytes(2, byteorder='little')
+        f.write(byte)
+        print(var, byte)
+
+print('生成成功')
+```
+生成的二进制文件装载到ROM中即可。
+
+### 微程序测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/micro-app-test.gif"/>
 
 
 <script>
