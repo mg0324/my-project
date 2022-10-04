@@ -744,11 +744,11 @@ T触发器是在数字电路中，凡在CP时钟脉冲控制下，根据输入�
 
 将片选信号作为输入，作为3态门的输入条件之一。
 
-#### byte优化后电路
+#### 寄存器优化后电路
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/byte-yh.png"/>
 
-#### byte优化后电路测试
+#### 寄存器优化后电路测试
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/8byte-yh-test.png"/>
 
@@ -788,7 +788,35 @@ CS=1，输出无法同时读写。
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/3CT-yy-test.gif"/>
 
+## 核心组件
+### ALU
+支持加法和减法的ALU实现，详细请参考[ALU](/skill/basic/compose-cpu?id=alu支持加法和减法)
 
+### 寄存器
+* [优化前版本](/skill/basic/compose-cpu?id=_8位寄存器)
+* [寄存器优化后版本](/skill/basic/compose-cpu?id=寄存器优化后电路)
+
+## 应用实践
+### 半自动加法机
+#### 定义
+需求：将1到5连续做加法运输，半自动电路实现。
+
+#### 实现说明
+* 将1,2,3,4,5分别存到ROM中。
+* 利用3位计数器改变地址线。
+* 利用ALU实现加法。
+* 将加好的结果存到寄存器中。
+
+#### 电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/half-ALU.png"/>
+
+#### 电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/half-ALU-test.gif"/>
+
+
+### 全自动加法机
 
 <script>
 (function(){
