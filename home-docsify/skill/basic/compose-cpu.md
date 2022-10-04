@@ -796,6 +796,28 @@ CS=1，输出无法同时读写。
 * [优化前版本](/skill/basic/compose-cpu?id=_8位寄存器)
 * [寄存器优化后版本](/skill/basic/compose-cpu?id=寄存器优化后电路)
 
+### 开机电路
+#### 参数说明
+* 输入
+  * Reset：重置信号
+  * Power：电源信号
+  * Manual： 手动信号
+  * Pul： 手动点击信号
+  * Halt： 暂停信号
+  * CP：时钟信号
+* 输出：
+  * Reset：重置信号
+  * CP：时钟信号
+
+#### 电路实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/POW.png"/>
+
+#### 电路测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/POW-test.gif"/>
+
+
 ## 应用实践
 ### 半自动加法机
 #### 定义
