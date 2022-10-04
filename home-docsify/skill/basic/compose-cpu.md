@@ -792,6 +792,33 @@ CS=1，输出无法同时读写。
 ### ALU
 支持加法和减法的ALU实现，详细请参考[ALU](/skill/basic/compose-cpu?id=alu支持加法和减法)
 
+#### ALU增强
+* 支持程序状态字
+  * 第一位： 有溢出，为1
+  * 第二位： 全位0时，为1
+  * 第三位： 奇数偶数位
+  * 第四位： 中断标志（未实现）
+* 支持的运算（通过OP切换）
+  * 8位加法(OP=0)
+  * 8位减法(OP=1)
+  * 8位逻辑与(OP=2)
+  * 8位逻辑或(OP=3)
+  * 8位逻辑异或(OP=4)
+  * 8位逻辑取反（已经有了，请参考[8位取反器](/skill/basic/compose-cpu?id=_8位取反器))(OP=5)
+
+#### 8位逻辑运算组件封装
+只贴出8位逻辑与，结构类似，比较简单。
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/8B-and.png"/>
+
+#### ALU增强后电路
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/ALU-super.png"/>
+
+#### ALU增强后测试
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu/ALU-super-test.png"/>
+
 ### 寄存器
 * [优化前版本](/skill/basic/compose-cpu?id=_8位寄存器)
 * [寄存器优化后版本](/skill/basic/compose-cpu?id=寄存器优化后电路)
@@ -910,6 +937,7 @@ CS=1，输出无法同时读写。
 其中微程序控制序列存在ROM中，通过位状态来控制电路运行。
 
 ### python编写微程序
+
 ``` python
 A_WE = 2 ** 0
 A_CS = 2 ** 1
@@ -964,6 +992,8 @@ print('生成成功')
 ### 微程序测试
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu/micro-app-test.gif"/>
+
+
 
 
 <script>
