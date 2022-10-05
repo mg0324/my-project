@@ -29,6 +29,11 @@
     color: white;
 }
 
+.layui-row .doing {
+    background-color: blue;
+    color: white;
+}
+
 .layui-row .no {
     background-color: white;
     color: black;
@@ -42,14 +47,22 @@
     <fieldset class="layui-elem-field" style="padding: 10px;" v-for="(item,index) in nodes">
         <legend>{{item.moduleName}}</legend>
         <div class="layui-row">
-            <div v-if="finish(part)" class="layui-col-xs12 layui-col-sm12 layui-col-md2 has" v-for="(part,index) in item.parts">
+            <div v-if="status(part) == '1'" class="layui-col-xs12 layui-col-sm12 layui-col-md2 has" v-for="(part,index) in item.parts">
+                <a :href="theHref(part)">{{theName(part)}}</a>
+            </div>
+            <div v-else-if="status(part) == '2'" class="layui-col-xs12 layui-col-sm12 layui-col-md2 doing">
                 <a :href="theHref(part)">{{theName(part)}}</a>
             </div>
             <div v-else class="layui-col-xs12 layui-col-sm12 layui-col-md2 no">
-                {{theName(part)}}
+                    {{theName(part)}}
+                </div>
             </div>
-        </div>
     </fieldset>
+    <div style="text-align:right;color:gray;">
+        蓝色 - 进行中<br/>
+        绿色 - 完　成<br/>
+        白色 - 待修行<br/>
+    </div>
 </div>
 
 <script>
@@ -125,7 +138,7 @@
                         },
                         {
                             moduleName: '计算机基础',
-                            parts:['计算机组成原理','计算机网络','操作系统']
+                            parts:['计算机组成原理@2@/skill/basic/compose-because','计算机网络','操作系统']
                         }
                     ]
                 };
@@ -137,8 +150,8 @@
                 theHref(v){
                     return v.split('@')[2];
                 },
-                finish(v){
-                    return '1' == v.split('@')[1];
+                status(v){
+                    return v.split('@')[1];
                 }
             }
         });
