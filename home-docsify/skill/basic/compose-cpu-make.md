@@ -50,7 +50,7 @@
 * T1寄存器：临时寄存器1.
 * T2寄存器：临时寄存器2。
 
-目前共22个寄存器。
+目前共21个寄存器。
 
 #### 532译码器电路实现
 使用ROM方式实现(32位数中只有一位为1，表示选中)
@@ -90,7 +90,23 @@ W=2，表示第二个寄存器写，为01。
 R=3，表示第3个寄存器读，为10。
 
 ### CPU控制器Control Unit
+#### 读写控制器RWC
 
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu-app/rwc.png"/>
+
+#### CPU控制器电路
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu-app/CPU-c.png"/>
+
+组件显示如下：
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu-app/CPU-c-pin.png"/>
+
+## CPU实现
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu-app/CPU.png"/>
+
+在硬件层面基本设计并实现好了CPU，接下来需要对CPU做软件编程，完成CPU的运行。
 
 ## 指令系统
 该指令系统是基于寄存器的设计，有多种指令，后续可以不断扩展。（参考汇编语言设计）
