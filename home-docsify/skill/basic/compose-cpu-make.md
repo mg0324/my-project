@@ -102,6 +102,18 @@ R=3，表示第3个寄存器读，为10。
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu-app/CPU-c-pin.png"/>
 
+### ALU升级
+支持8中操作，分别是加、减、加1、减1、与、或、异或和非。
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu-app/ALU-l2.png"/>
+
+* 支持程序状态字PSW
+  * 第一位： 有溢出，为1
+  * 第二位： 全位0时，为1
+  * 第三位： 奇数偶数位，奇数时为1
+  * 第四位： 中断标志（未实现）
+
+
 ## CPU实现
 
 <img class="my-img" data-src="../../static/skill/basic/compose/cpu-app/CPU.png"/>
@@ -139,9 +151,6 @@ R=3，表示第3个寄存器读，为10。
 * MOV A,[5]; 直接寻址
 * MOV A,[B]; 寄存器间接寻址
 
-> [!TIP]
-> 测试
-
 ### 指令存储方式
 利用16位来存储指令（地址是16进制的）
 
@@ -175,21 +184,233 @@ R=3，表示第3个寄存器读，为10。
 ## 微程序生成器
 利用python编写微程序控制器，实现CPU的指令周期。
 
-代码放到gitee上，地址为：https://gitee.com/mgang/python-study/blob/master/cpu/micro-contoller.py
+代码放到gitee上，地址为：https://gitee.com/mgang/python-study/blob/master/cpu/micro-controller.py
 
 
 ## 指令支持实现
 原理：将汇编指令通过编译器转换为微程序的微操作，通过将程序（指令）加载到内存后，CPU通过取指周期将指令加载到IR寄存器，将目标操作数加载到DST寄存器，将源操作数加载到SRC寄存器，最后执行。
 
-* 取指周期 - 占用6个
-* 数据传输指令
-  * MOV指令
-    * 立即寻址 MOV A,5
-    * 寄存器寻址 MOV A,B
-    * 直接寻址 MOV 0Xcf,5 或者 MOV A,[5]
-    * 寄存器间接寻址 MOV A,[B]
-* 算术运算
-* 逻辑运算
+其中各电路标志定义在如下文件内：https://gitee.com/mgang/python-study/blob/master/cpu/pin.py
+
+### 取指周期 
+- 占用6个微操作(已完成)
+``` python
+FETCH = [
+    pin.PC_OUT | pin.MAR_IN,
+    pin.RAM_OUT | pin.IR_IN | pin.PC_INC,
+    pin.PC_OUT | pin.MAR_IN,
+    pin.RAM_OUT | pin.DST_IN | pin.PC_INC,
+    pin.PC_OUT | pin.MAR_IN,
+    pin.RAM_OUT | pin.SRC_IN | pin.PC_INC,
+]
+```
+
+> [!TIP]
+> 重点：指令周期CYC是4位，则一个指令周期内最多执行2^4=16个微操作。取指周期固定需要6个微操作，因此还剩下10个微操作去实现汇编指令。
+
+### 数据传输指令
+#### MOV指令
+  * 立即寻址 MOV A,5
+  * 寄存器寻址 MOV A,B
+  * 直接寻址 MOV 0Xcf,5 或者 MOV A,[5]
+  * 寄存器间接寻址 MOV A,[B]
+支持4种寻址方式，组合后得到12种实现如下：
+``` python
+# 这个地方不能用'MOV'字符串的key
+MOV: {
+    # 1. MOV A,5;
+    (pin.AM_REG, pin.AM_INS): [
+        pin.DST_W | pin.SRC_OUT,
+    ],
+    # 2. MOV A,B;
+    (pin.AM_REG, pin.AM_REG): [
+        pin.DST_W | pin.SRC_R
+    ],
+    # 3. MOV A,[5] or [0x12]
+    (pin.AM_REG, pin.AM_DIR): [
+        pin.SRC_OUT | pin.MAR_IN,
+        pin.RAM_OUT | pin.DST_W
+    ],
+    # 4. MOV A,[B]
+    (pin.AM_REG, pin.AM_RAM): [
+        pin.SRC_R | pin.MAR_IN,
+        pin.RAM_OUT | pin.DST_W
+    ],
+    # 5. MOV [5],5 or MOV [0x12],12
+    (pin.AM_DIR, pin.AM_INS): [
+        pin.DST_OUT | pin.MAR_IN,
+        pin.RAM_IN | pin.SRC_OUT
+    ],
+    # 6. MOV [5],A;
+    (pin.AM_DIR, pin.AM_REG): [
+        pin.DST_OUT | pin.MAR_IN,
+        pin.RAM_IN | pin.SRC_R
+    ],
+    # 7. MOV [5],[6]
+    (pin.AM_DIR, pin.AM_DIR): [
+        pin.SRC_OUT | pin.MAR_IN,
+        pin.T1_IN | pin.RAM_OUT,
+        pin.DST_OUT | pin.MAR_IN,
+        pin.RAM_IN | pin.T1_OUT
+    ],
+    # 8. MOV [5],[A]
+    (pin.AM_DIR, pin.AM_RAM): [
+        pin.SRC_R | pin.MAR_IN,
+        pin.T1_IN | pin.RAM_OUT,
+        pin.DST_OUT | pin.MAR_IN,
+        pin.RAM_IN | pin.T1_OUT
+    ],
+    # 9. MOV [A],5;
+    (pin.AM_RAM, pin.AM_INS): [
+        pin.DST_R | pin.MAR_IN,
+        pin.RAM_IN | pin.SRC_OUT
+    ],
+    # 10. MOV [A],B;
+    (pin.AM_RAM, pin.AM_REG): [
+        pin.DST_R | pin.MAR_IN,
+        pin.RAM_IN | pin.SRC_R
+    ],
+    # 11. MOV [A],[5]
+    (pin.AM_RAM, pin.AM_DIR): [
+        pin.SRC_OUT | pin.MAR_IN,
+        pin.RAM_OUT | pin.T2_IN,
+        pin.DST_R | pin.MAR_IN,
+        pin.RAM_IN | pin.T2_OUT
+    ],
+    # 12. MOV [A],[B]
+    (pin.AM_RAM, pin.AM_RAM): [
+        pin.SRC_R | pin.MAR_IN,
+        pin.RAM_OUT | pin.T2_IN,
+        pin.DST_R | pin.MAR_IN,
+        pin.RAM_IN | pin.T2_OUT
+    ]
+}
+```
+### 算术运算
+之前的ALU已经支持了6种操作，分别是加、减、与、或、异或、非；现在扩展2种，分别是加1和减1。（利用硬件来实现++和--，比软件实现简单）
+
+[升级ALU](/skill/basic/compose-cpu-make?id=alu升级)
+
+#### 加法ADD
+``` python
+ADD: {
+    # 1. ADD A,5;
+    (pin.AM_REG, pin.AM_INS): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_OUT | pin.B_IN,
+        pin.OP_ADD | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ],
+    # 2. ADD A,B;
+    (pin.AM_REG, pin.AM_REG): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_R | pin.B_IN,
+        pin.OP_ADD | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ]
+},
+```
+#### 减法SUB
+``` python
+SUB: {
+    # 1. SUB A,5;
+    (pin.AM_REG, pin.AM_INS): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_OUT | pin.B_IN,
+        pin.OP_SUB | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ],
+    # 2. SUB A,B;
+    (pin.AM_REG, pin.AM_REG): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_R | pin.B_IN,
+        pin.OP_SUB | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ]
+},
+```
+#### 加一INC
+``` python
+INC: {
+    # INC A
+    pin.AM_REG: [
+        pin.DST_R | pin.A_IN,
+        pin.OP_INC | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ]
+},
+```
+#### 减一DEC
+``` python
+DEC: {
+    # DEC A
+    pin.AM_REG: [
+        pin.DST_R | pin.A_IN,
+        pin.OP_DEC | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ]
+},
+```
+
+### 逻辑运算
+支持与、或、异或和非。
+
+#### 与AND
+``` python
+AND: {
+    # 1. AND A,5;
+    (pin.AM_REG, pin.AM_INS): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_OUT | pin.B_IN,
+        pin.OP_AND | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ],
+    # 2. AND A,B;
+    (pin.AM_REG, pin.AM_REG): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_R | pin.B_IN,
+        pin.OP_AND | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ]
+},
+```
+#### 或OR
+``` python
+OR: {
+    # 1. OR A,5;
+    (pin.AM_REG, pin.AM_INS): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_OUT | pin.B_IN,
+        pin.OP_OR | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ],
+    # 2. OR A,B;
+    (pin.AM_REG, pin.AM_REG): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_R | pin.B_IN,
+        pin.OP_OR | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ]
+},
+```
+#### 异或XOR
+``` python
+XOR: {
+    # 1. XOR A,5;
+    (pin.AM_REG, pin.AM_INS): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_OUT | pin.B_IN,
+        pin.OP_XOR | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ],
+    # 2. XOR A,B;
+    (pin.AM_REG, pin.AM_REG): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_R | pin.B_IN,
+        pin.OP_XOR | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ]
+}
+```
+#### 非NOT
+``` python
+NOT: {
+    # NOT A
+    pin.AM_REG: [
+        pin.DST_R | pin.A_IN,
+        pin.OP_NOT | pin.ALU_PSW | pin.DST_W | pin.ALU_OUT
+    ]
+},
+```
+
 * 标记转移
 * 条件转移
 * 堆栈操作
