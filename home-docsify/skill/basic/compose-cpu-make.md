@@ -288,12 +288,12 @@ MOV: {
 }
 ```
 
-### 算术运算
+### 算术运算指令
 之前的ALU已经支持了6种操作，分别是加、减、与、或、异或、非；现在扩展2种，分别是加1和减1。（利用硬件来实现++和--，比软件实现简单）
 
 [升级ALU](/skill/basic/compose-cpu-make?id=alu升级)
 
-#### 加法ADD
+#### 加法ADD指令
 ``` python
 ADD: {
     # 1. ADD A,5;
@@ -310,7 +310,7 @@ ADD: {
     ]
 },
 ```
-#### 减法SUB
+#### 减法SUB指令
 ``` python
 SUB: {
     # 1. SUB A,5;
@@ -327,7 +327,7 @@ SUB: {
     ]
 },
 ```
-#### 加一INC
+#### 加一INC指令
 ``` python
 INC: {
     # INC A
@@ -337,7 +337,7 @@ INC: {
     ]
 },
 ```
-#### 减一DEC
+#### 减一DEC指令
 ``` python
 DEC: {
     # DEC A
@@ -348,10 +348,10 @@ DEC: {
 },
 ```
 
-### 逻辑运算
+### 逻辑运算指令
 支持与、或、异或和非。
 
-#### 与AND
+#### 与AND指令
 ``` python
 AND: {
     # 1. AND A,5;
@@ -368,7 +368,7 @@ AND: {
     ]
 },
 ```
-#### 或OR
+#### 或OR指令
 ``` python
 OR: {
     # 1. OR A,5;
@@ -385,7 +385,7 @@ OR: {
     ]
 },
 ```
-#### 异或XOR
+#### 异或XOR指令
 ``` python
 XOR: {
     # 1. XOR A,5;
@@ -402,7 +402,7 @@ XOR: {
     ]
 }
 ```
-#### 非NOT
+#### 非NOT指令
 ``` python
 NOT: {
     # NOT A
@@ -413,8 +413,219 @@ NOT: {
 },
 ```
 
-* 标记转移
-* 条件转移
+### 标记转移指令
+
+思路：代码类型分为代码和标记，将标记的下一条指令记录。出现JMP Label；时，将PC的值设置为Label的下一条指令地址即可。
+
+#### JMP指令
+``` python
+JMP: {
+    # JMP aaaa;
+    pin.AM_INS: [
+        pin.DST_OUT | pin.PC_IN
+    ],
+}
+```
+汇编程序如下：
+``` asm
+MOV D,1;
+a:
+    INC D;
+    JMP a;
+; 停止
+HLT;
+```
+预处理代码时，如果是以冒号结尾则设置代码类型为标记：
+``` python
+def prepare_source(self):
+    # 以冒号结尾,为标记
+    if self.source.endswith(':'):
+        self.type = self.TYPE_LABEL
+        self.name = self.source.strip(':')
+        return
+    ...
+```
+编译代码时，支持标记：
+``` python
+def compile_program():
+  global codes
+  global marks
+  # 读取源代码
+  with open(src_name, encoding="utf-8") as file:
+      lines = file.readlines()
+  # 逐行处理
+  for number,line in enumerate(lines):
+      # 去掉空格
+      source = line.strip()
+      # 处理注释
+      if ";" in source:
+          match = annotation.match(source)
+          source = match.group(1)
+      if not source:
+          continue
+      # 加入代码集合
+      codes.append(Code(number+1, source))
+  # 倒叙处理标记
+  result = []
+  current = None
+  for var in range(len(codes) - 1, -1, -1):
+      code = codes[var]
+      # 倒叙处理标记，如果是标记则加入到marks字典，是代码则加入代码集合
+      if code.type == Code.TYPE_CODE:
+          current = code
+          result.insert(0, code)
+          continue
+      if code.type == Code.TYPE_LABEL:
+          marks[code.name] = current
+          continue
+      raise SyntaxError(code)
+  # 设置代码当前指令行序号
+  for index, var in enumerate(result):
+      var.index = index
+
+  # 将代码编译后生成program.bin二进制代码
+  with open(dst_name, 'wb') as file:
+      for code in result:
+          values = code.compile_code()
+          print(f'{code} , {values}')
+          for value in values:
+              result = value.to_bytes(1, byteorder='little')
+              file.write(result)
+  pass
+```
+在获取操作数时，如果是标记，则返回立即数和下条指令的地址（乘以3，是因为一条指令占3个字节）
+``` python
+ # 通过地址获取
+def get_am(self, addr):
+    global marks
+    if addr in marks:
+        return pin.AM_INS, marks[addr].index * 3
+......
+```
+### 条件转移指令
+条件转移指令依赖比较指令CMP，和ALU中的程序状态字PSW。
+
+#### CMP指令
+让2个数做减法，并且将PSW保存起来。（检查电路，特别是ALU的程序状态字部分电路，写入的电路在ALU的第二位）
+``` python
+CMP: {
+    # 1. CMP A,5;
+    (pin.AM_REG, pin.AM_INS): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_OUT | pin.B_IN,
+        pin.OP_SUB | pin.ALU_PSW
+    ],
+    # 2. CMP A,B;
+    (pin.AM_REG, pin.AM_REG): [
+        pin.DST_R | pin.A_IN,
+        pin.SRC_R | pin.B_IN,
+        pin.OP_SUB | pin.ALU_PSW
+    ]
+},
+```
+#### 6大条件指令
+``` python
+# 6大条件跳转，根据PSW来判定
+# 溢出跳转
+JO = (4 << pin.ADDR1_SHIFT) | pin.ADDR1
+# 非溢出跳转
+JNO = (5 << pin.ADDR1_SHIFT) | pin.ADDR1
+# 零跳转
+JZ = (6 << pin.ADDR1_SHIFT) | pin.ADDR1
+# 非零跳转
+JNZ = (7 << pin.ADDR1_SHIFT) | pin.ADDR1
+# 奇数跳转
+JP = (8 << pin.ADDR1_SHIFT) | pin.ADDR1
+# 非奇数跳转
+JNP = (9 << pin.ADDR1_SHIFT) | pin.ADDR1
+```
+微操作都是将要跳转的指令地址写入到PC中，和JMP指令一样。
+``` python
+JO: {
+    pin.AM_INS: [
+        pin.DST_OUT | pin.PC_IN
+    ],
+},
+JNO: {
+    pin.AM_INS: [
+        pin.DST_OUT | pin.PC_IN
+    ],
+},
+JZ: {
+    pin.AM_INS: [
+        pin.DST_OUT | pin.PC_IN
+    ],
+},
+JNZ: {
+    pin.AM_INS: [
+        pin.DST_OUT | pin.PC_IN
+    ],
+},
+JP: {
+    pin.AM_INS: [
+        pin.DST_OUT | pin.PC_IN
+    ],
+},
+JNP: {
+    pin.AM_INS: [
+        pin.DST_OUT | pin.PC_IN
+    ],
+}
+```
+不过前提是满足某个条件才执行跳转：(在微程序生成器中，根据PSW的状态位和OP来控制对应指令的执行)
+```
+# 条件跳转指令集合
+CONDITION_JMPS = {ASM.JO, ASM.JNO, ASM.JZ, ASM.JNZ, ASM.JP, ASM.JNP}
+
+# 编译1地址指令
+def compile_addr1(addr, ir, psw, index):
+    # ir=1地址指令时 6位指令 | 2位目标数
+    global micro
+    global CONDITION_JMPS
+    # ir 6位指令 | 2位目标操作数
+    op = ir & 0xfc  # 指令助记符
+    amd = ir & 3  # 目标操作数
+
+    INST = ASM.INS_SUPPORT_LIST[1]
+    # 指令不在支持的指令内，执行指令周期并返回
+    if op not in INST:
+        micro[addr] = pin.CYC
+        return
+
+    am = amd
+    if am not in INST[op]:
+        micro[addr] = pin.CYC
+        return
+
+    # 拿到要执行的指令
+    EXEC = INST[op][am]
+    # 如果指令是条件跳转指令，则获取跳转指令
+    if op in CONDITION_JMPS:
+        EXEC = get_condition_jump(EXEC, op, psw)
+    if index < len(EXEC):
+        micro[addr] = EXEC[index]
+    else:
+        micro[addr] = pin.CYC
+    pass
+```
+
+#### asm例子
+``` asm
+MOV D,1;
+aaa:
+    INC D
+    CMP D,5
+    JO aaa
+bbb:
+    DEC D
+    CMP D,0
+    JZ aaa
+    JNO bbb
+; 停止
+HLT;
+```
+测试时效果为，D先从1加到5，再从5减到0，又加到5，再减到0，如此往复。
+
 * 堆栈操作
 * 函数调用
 * 内中断
