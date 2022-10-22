@@ -27,6 +27,7 @@
     - 工具
         - [IDEA](skill/tools/idea.md)
         - [常用软件](skill/tools/soft.md)
+        - [笔记工具](skill/tools/booknote.md)
     - Q&A
         - [长度问题](skill/qa/for-len.md)
         - [Redis相关](skill/qa/redis.md)
