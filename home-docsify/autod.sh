@@ -2,4 +2,4 @@ git add .
 git commit -m $1
 git push
 
-echo "发布成功"
+echo "提交成功"
