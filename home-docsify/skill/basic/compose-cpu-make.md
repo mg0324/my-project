@@ -714,6 +714,7 @@ ET:
 故可以看到D的值由5到0，再从0到5。且内存中0x010a到0x010f的值为0到5。
 
 ### 函数调用
+#### 实现原理
 首先要知道，函数调用是基于堆栈操作实现的。简单的说，当调用一个函数时，将当前PC的值保存到堆栈中，执行完成后返回时，将栈顶的值出栈并写入到PC中，回到当时执行的指令序号。
 
 主要包含2个指令操作：
@@ -789,7 +790,188 @@ exit:
 ```
 C的值从0加到5并退出，过程中调用show函数，D会伴随显示255的值。
 
-* 内中断
+### 内中断
+#### 中断概念
+* 中断是CPU处理外部突发事件的一个重要技术。
+* 它能使CPU在运行过程中对外部事件发出的中断请求及时地进行处理，处理完成后又立即返回断点，继续进行CPU原来的工作。
+* 引起中断的原因或者说发出中断请求的来源叫做中断源。
+* 根据来源不同，可分为软件中断和硬件中断。
+  * 软件中断其实并不是真正的中断，它们只是可被调用执行的一般程序。
+  * 硬件中断又可以分为内部中断和外部中断。
+    * 内部中断是指因硬件出错（如突然掉电、奇偶校验错等）或运算出错（除数为零、运算溢出、单步中断等）所引起的中断。内部中断是不可屏蔽的中断。 
+    * 外部中断一般是指由计算机外设发出的中断请求，如：键盘中断、打印机中断、定时器中断等。外部中断是可以屏蔽的中断，也就是说，利用中断控制器可以屏蔽这些外部设备 的中断请求。
+
+所以本文实现的中断是内中断部分。
+
+#### 中断指令
+* INT - 中断调用
+* IRET - 中断返回
+* STI - 开中断
+* CLI - 关中断
+
+本文实现的内中断比较简单，和函数调用类似，不过前提是需要判断中断允许位（在PSW的第4位），如果允许则调用。
+
+#### ALU支持中断控制
+优化后ALU电路如下：
+
+<img class="my-img" data-src="../../static/skill/basic/compose/cpu-app/ALU-INT.png"/>
+
+电路设计时，中断位连接了非门，所以默认是允许中断的。
+
+新增控制位：
+```
+# 中断位写
+ALU_INT_W = 1 << 22
+# 中断有效位
+ALU_INT = 1 << 23
+
+# 开启中断
+ALU_STI = ALU_INT_W
+# 关闭中断
+ALU_CLI = ALU_INT_W | ALU_INT
+```
+
+#### INT指令
+``` python
+INT: {
+    # int show 中断调用
+    pin.AM_INS: [
+        # 栈指针减1
+        pin.SP_OUT | pin.A_IN,
+        pin.OP_DEC | pin.SP_IN | pin.ALU_OUT,
+        # 减一后的指针放到内存地址的低位
+        pin.SP_OUT | pin.MAR_IN,
+        # 栈段指针放到内存地址的高位
+        pin.SS_OUT | pin.MSR_IN,
+        # pc写入到内存栈中，保存起来
+        pin.PC_OUT | pin.RAM_IN,
+        # 将目标指令行写入到pc，准备执行
+        pin.DST_OUT | pin.PC_IN,
+        # 代码段0写到内存地址高位，表示切换到代码段执行。并且关闭中断位写入PSW
+        pin.CS_OUT | pin.MSR_IN | pin.ALU_PSW | pin.ALU_CLI,
+    ]
+},
+```
+和方法调用类似，最后需要关闭中断位并写入PSW
+#### IRET指令
+``` python
+IRET: [
+    # 栈指针指向内存地址地位
+    pin.SP_OUT | pin.MAR_IN,
+    # 栈段指向内存地址高位
+    pin.SS_OUT | pin.MSR_IN,
+    # 将内存栈顶的值读取到PC
+    pin.PC_IN | pin.RAM_OUT,
+    # 将栈指针加一
+    pin.SP_OUT | pin.A_IN,
+    pin.OP_INC | pin.SP_IN | pin.ALU_OUT,
+    # 代码段0写到内存地址高位，表示切换到代码段执行。并且允许中断并写入PSW
+    pin.CS_OUT | pin.MSR_IN | pin.ALU_PSW | pin.ALU_STI,
+],
+```
+和方法返回类似，最后需要开启中断位并写入PSW
+#### STI指令
+``` python
+STI: [
+    pin.ALU_PSW | pin.ALU_STI
+],
+```
+#### CLI指令
+``` python
+CLI: [
+    pin.ALU_PSW | pin.ALU_CLI
+],
+```
+
+#### 微程序支持
+在编译1地址指令时，判断是中断调用，则如果PSW里的中断状态位允许时执行调用，不运行则跳过。
+```
+# 如果是中断调用
+if op == ASM.INT:
+    EXEC = get_interrupt(EXEC, op, psw)
+
+# 获取中断指令，如果中断位允许则执行
+def get_interrupt(EXEC, op, psw):
+    intEn = psw & 8
+    if intEn:
+        return EXEC
+    return [pin.CYC]
+```
+
+#### asm例子
+``` asm
+    mov ss, 1
+    MOV SP, 0x20 ; [0, 0xf]
+    jmp start
+
+show:
+    mov d, 255;
+    iret; return;
+
+start:
+    mov c, 0
+
+increase:
+    inc c;
+    mov d, c;
+    JP disable
+enable:
+    sti;
+    jmp interrupt
+disable:
+    cli
+
+interrupt:
+    int show
+    jmp increase
+
+    HLT
+```
+运行后，D从0依次递增显示，当为偶数时会显示一下255，随后继续往上加。
+
+## 总结
+在实现一个CPU时，需要了解各个组件逻辑电路，并最终搭建CPU的框架，然后通过微程序的思想对CPU进行编程实现。
+
+因此总结如下几个步骤：
+1. 基本电路组件学习
+2. 完成CPU核心组件电路实现
+3. 完成CPU框架设计
+4. 设计微程序，实现对CPU的编程
+5. 参考x86汇编，实现自己的指令系统
+
+截止目前实现指令列表如下：
+
+* 二地址指令
+  * MOV - 数据传递指令，支持4种寻址方式组合
+  * ADD - 加法运算指令
+  * SUB - 减法运算指令
+  * CMP - 比较指令
+  * AND - 逻辑与运行指令
+  * OR - 逻辑或运算指令
+  * XOR - 逻辑异或运行指令
+* 一地址指令
+  * INC - 加1指令
+  * DEC - 减一指令
+  * NOT - 逻辑取反指令
+  * JMP - 跳转指令
+  * JO - 溢出跳转指令
+  * JNO - 非溢出跳转指令
+  * JZ - 零跳转指令
+  * JNZ - 非零跳转指令
+  * JP - 奇数跳转指令
+  * JNP - 非奇数跳转指令
+  * PUSH - 入栈指令
+  * POP - 出栈指令
+  * CALL - 函数调用指令
+  * INT - 中断调用指令
+* 零地址指令
+  * NOP - 空指令
+  * RET - 函数返回指令
+  * IRET - 中断返回指令
+  * STI - 开启中断位指令
+  * CLI - 关闭中断位指令
+  * HLT - 停止指令
+
 
 <script>
 (function(){
