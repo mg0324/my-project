@@ -713,7 +713,82 @@ ET:
 
 故可以看到D的值由5到0，再从0到5。且内存中0x010a到0x010f的值为0到5。
 
-* 函数调用
+### 函数调用
+首先要知道，函数调用是基于堆栈操作实现的。简单的说，当调用一个函数时，将当前PC的值保存到堆栈中，执行完成后返回时，将栈顶的值出栈并写入到PC中，回到当时执行的指令序号。
+
+主要包含2个指令操作：
+* call - 调用函数，如call show
+* ret - 返回
+
+#### CALL指令
+``` python
+CALL: {
+    # call show
+    pin.AM_INS: [
+        # 栈指针减1
+        pin.SP_OUT | pin.A_IN,
+        pin.OP_DEC | pin.SP_IN | pin.ALU_OUT,
+        # 减一后的指针放到内存地址的低位
+        pin.SP_OUT | pin.MAR_IN,
+        # 栈段指针放到内存地址的高位
+        pin.SS_OUT | pin.MSR_IN,
+        # pc写入到内存栈中，保存起来
+        pin.PC_OUT | pin.RAM_IN,
+        # 将目标指令行写入到pc，准备执行
+        pin.DST_OUT | pin.PC_IN,
+        # 代码段0写到内存地址高位，表示切换到代码段执行
+        pin.CS_OUT | pin.MSR_IN,
+    ]
+},
+```
+和入栈指令的微操作类似，只不过这里是将PC的值压入到内存
+
+#### RET指令
+``` python
+RET: [
+    # 栈指针指向内存地址地位
+    pin.SP_OUT | pin.MAR_IN,
+    # 栈段指向内存地址高位
+    pin.SS_OUT | pin.MSR_IN,
+    # 将内存栈顶的值读取到PC
+    pin.PC_IN | pin.RAM_OUT,
+    # 将栈指针加一
+    pin.SP_OUT | pin.A_IN,
+    pin.OP_INC | pin.SP_IN | pin.ALU_OUT,
+    # 代码段0写到内存地址高位，表示切换到代码段执行
+    pin.CS_OUT | pin.MSR_IN,
+],
+```
+和出栈指令的微操作类似，只不过这里是将内存里的值出栈到PC
+
+#### asm例子
+``` asm
+mov ss,1
+mov sp,0x10
+jmp start
+
+show:
+    mov d,255
+    ret
+
+start:
+    mov c,1
+    mov d,c
+    jmp main
+
+main:
+    inc c
+    mov d,c
+    call show
+    cmp c,5
+    jo main
+    jz exit
+
+exit:
+    hlt
+```
+C的值从0加到5并退出，过程中调用show函数，D会伴随显示255的值。
+
 * 内中断
 
 <script>
