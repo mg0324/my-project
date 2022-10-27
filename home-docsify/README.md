@@ -51,7 +51,7 @@
                 <a :href="theHref(part)">{{theName(part)}}</a>
             </div>
             <div v-else-if="status(part) == '2'" class="layui-col-xs12 layui-col-sm12 layui-col-md2 doing">
-                <a :href="theHref(part)">{{theName(part)}}</a>
+                <a :href="theHref(part)" target="_blank">{{theName(part)}}</a>
             </div>
             <div v-else class="layui-col-xs12 layui-col-sm12 layui-col-md2 no">
                     {{theName(part)}}
@@ -138,7 +138,7 @@
                         },
                         {
                             moduleName: '计算机基础',
-                            parts:['计算机组成原理@2@/skill/basic/compose-because','计算机网络','操作系统']
+                            parts:['计算机组成原理@2@https://mgang.gitee.io/sn-cpu/','计算机网络','操作系统']
                         }
                     ]
                 };
