@@ -7,5 +7,5 @@ docker run --name nginx -d --restart=always \
 -p 80:80 -p 443:443 \
 -v /opt/nginx/html:/usr/share/nginx/html \
 -v /opt/nginx/conf:/etc/nginx/conf.d \
-mangomei/nginx:2.8
+mangomei/nginx:2.9
 ```
