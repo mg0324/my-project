@@ -1,0 +1,16 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  card-api:
+    image: swr.cn-south-1.myhuaweicloud.com/mangoorg/card:latest
+    restart: always
+    ports:
+      - 30901:9001
+    volumes:
+      - /data/card:/data/card
+    environment:
+      APP_CONFIG: /data/card/application.properties
+      # jvm 参数
+      #javaOpts: "-Xms200m -Xmx200m -Xmn120m -XX:MetaspaceSize=80m -XX:MaxMetaspaceSize=200m -Xverify:none -XX:+UseG1GC"
+      JAVA_OPTS:
