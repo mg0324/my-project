@@ -1,0 +1,9 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  nginx-mb:
+    image: swr.cn-south-1.myhuaweicloud.com/mangoorg/card-admin:v1.0-2022090203
+    restart: always
+    ports:
+      - 30180:80
