@@ -2,7 +2,7 @@
 # 停止并删除旧版本容器
 #ssh root@master 'docker stop nginx && docker rm nginx'
 
-scp conf/* root@master:/opt/nginx/conf
-scp card.json root@master:/opt/nginx/html/config/card.json
+scp conf/* root@node:/opt/nginx/conf
+scp card.json root@node:/opt/nginx/html/config/card.json
 # 重启nginx容器
-ssh root@master 'docker restart nginx'
+ssh root@node 'docker restart nginx'
