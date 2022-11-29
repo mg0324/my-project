@@ -1,3 +1,3 @@
-ssh root@hw 'rm -rf /opt/docker-compose.yml'
-scp docker-compose.yml root@hw:/opt
-ssh root@hw 'cd /opt && docker-compose up -d'
+ssh root@hw 'rm -rf /opt/mb/docker-compose.yml'
+scp docker-compose.yml root@hw:/opt/mb/
+ssh root@hw 'cd /opt/mb && docker-compose up -d'

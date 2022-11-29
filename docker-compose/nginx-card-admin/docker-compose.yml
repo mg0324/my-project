@@ -2,7 +2,7 @@
 version: '3.1'
 
 services:
-  nginx-mb:
+  card-admin:
     image: swr.cn-south-1.myhuaweicloud.com/mangoorg/card-admin:v1.0-2022090203
     restart: always
     ports:
