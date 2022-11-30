@@ -32,6 +32,7 @@
 * [Gatsby](https://www.gatsbyjs.cn/) - Gatsby 是一个基于 React 的免费、开源框架，用于帮助 开发者构建运行速度极快的 网站 和 应用程序。
 * [Docsify](https://docsify.js.org/#/zh-cn/) - Python开发的一个神奇的文档网站生成器。
 * [Docute](https://docute.egoist.dev/zh/) - 一种轻松创建文档的方式。Docute 本质上就是一个 JavaScript 文件，它可以获取 Markdown 文件并将它们呈现为单页面应用。
+* [Vuepress-theme-hope](https://vuepress-theme-hope.github.io/v2/zh/) - vuepress的强大功能主题。
 
 ## UI框架
 * [Element UI](https://element.eleme.cn/#/zh-CN) - 饿了么UI。
