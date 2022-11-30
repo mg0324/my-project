@@ -1,3 +1,4 @@
+> 项目部署资源维护在: https://gitee.com/mgang/my-project
 ## 项目
 ``` plantuml
 @startmindmap
