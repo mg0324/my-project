@@ -5,7 +5,7 @@ MAINTAINER mangomei <1092017732@qq.com>
 # 设置镜像为国内，并安装curl
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
     && apk update \
-    && apk add curl
+    && apk add curl bash ttf-dejavu && rm -rf /var/cache/apk/*
 # 设置环境变量
 # ENV JAVA_HOME /usr/java/jdk
 # ENV PATH ${PATH}:${JAVA_HOME}/bin

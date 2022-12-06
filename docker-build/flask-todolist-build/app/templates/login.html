@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block body %}
+<section class="header">
+  <h2 class="title">登陆</h2>
+  <div class="row">
+    <div class="three columns value-prop"></div>
+    <div class="six columns">
+      {% if form.errors %}
+        <div class="has-error"><strong>无法登陆?</strong></div>
+      {% endif %}
+      <form method=post>
+        {{ form.hidden_tag() }}
+        <dl>
+          <dd>{{ form.email_or_username(class_="u-full-width", placeholder="邮箱或者用户名", maxlength=128)}}
+          <dd>{{ form.password(class_="u-full-width", placeholder="密码") }}
+          <dt>{{ form.submit }}
+        </dl>
+      </form>
+      <p>新用户? <a href="{{ url_for('auth.register') }}">快速注册</a>.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
