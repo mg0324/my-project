@@ -4,7 +4,7 @@ services:
     container_name: todolist
     image: swr.cn-south-1.myhuaweicloud.com/mangoorg/todolist:1.0
     command: sh -c "flask db upgrade && gunicorn todolist:app -w 2 -b :8000"
-    #volumes:
-    #  - /data/flask-todolist/todolist.db:/code/todolist.db
+    volumes:
+      - /data/flask-todolist/todolist.db:/code/todolist.db
     ports:
       - "30010:8000"
