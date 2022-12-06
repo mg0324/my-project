@@ -1,12 +1,10 @@
 version: "3.1"
 services:
-  todolist2:
-    container_name: todolist2
+  todolist:
+    container_name: todolist
     image: swr.cn-south-1.myhuaweicloud.com/mangoorg/todolist:1.0
-    build: .
-    env_file: .env
     command: sh -c "flask db upgrade && gunicorn todolist:app -w 2 -b :8000"
-    volumes:
-      - /data/flask-todolist/todolist.db:/code/todolist.db
+    #volumes:
+    #  - /data/flask-todolist/todolist.db:/code/todolist.db
     ports:
       - "30010:8000"
