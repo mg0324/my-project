@@ -26,6 +26,7 @@
               </li>
               <li>2021年4月17号离开浪潮，结束了5年多的电子政务行业经历，进入平安做hr平台相关业务。开始实践spring cloud微服务和docker容器自动化部署，以及k8s容器编排相关技术。
               </li>
+              <li>故事还在继续，期待明天更加精彩！！！</li>
             </ul>
           </div>
           <div>
@@ -35,10 +36,19 @@
                 <a href="http://mg.meiflower.top/mb">我的博客</a>
               </li>
               <li>
-                <a href="https://gitee.com/mgang">我的gitee</a>
+                <a href="http://mg.meiflower.top">猫大刚主页</a>
               </li>
               <li>
-                <a href="http://mg.meiflower.top/mb/pr/">发布日记</a>
+                <a href="https://blog.csdn.net/mg0324">我的CSDN</a>
+              </li>
+              <li>
+                <a href="https://gitee.com/mgang">我的Gitee</a>
+              </li>
+              <li>
+                <a href="https://space.bilibili.com/1174515315">B站 - 程序猫大刚</a>
+              </li>
+              <li>
+                <a href="https://mgang.gitee.io/sn-cpu/">CPU修行笔记</a>
               </li>
             </ul>
           </div>
@@ -65,8 +75,8 @@
     <el-row>
       <el-col :span="24">
         <div style="height: 50px;line-height:25px;position:fixed;bottom:30px;text-align: center;width:100%;font-size:13px;">
-            copyright@2017-2021<br>备案号：<a href="https://beian.miit.gov.cn/#/Integrated/index">粤ICP备17082965号</a><br/>
-            仓库托管: https://gitee.com/mgang/my-project/home
+            copyright@2017-2022<br>备案号：<a href="https://beian.miit.gov.cn/#/Integrated/index">粤ICP备17082965号</a><br/>
+            仓库托管: <a href="https://gitee.com/mgang/my-project/home">https://gitee.com/mgang/my-project/home</a>
         </div>
       </el-col>
     </el-row>

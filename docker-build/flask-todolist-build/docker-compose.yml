@@ -6,7 +6,7 @@ services:
     build: .
     env_file: .env
     command: sh -c "flask db upgrade && gunicorn todolist:app -w 2 -b :8000"
-    volumes:
-      - /data/flask-todolist/todolist.db:/code/todolist.db
+    #volumes:
+    #  - /data/flask-todolist/todolist.db:/code/todolist.db
     ports:
       - "30010:8000"
