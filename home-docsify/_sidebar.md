@@ -8,12 +8,9 @@
     - 计算机基石
         - 计算机组成原理
           - [CPU修行](https://mgang.gitee.io/sn-cpu/)
-    - Java
-        - [Java高并发](skill/java/juc.md)
-        - [Java虚拟机](skill/java/jvm.md)
-    - Java微服务
-        - [Spring Cloud](skill/micros/sc.md)
-        - [Dubble](skill/micros/dubble.md)
+    - 计算机语言
+      - [Java体系学习](https://mgang.gitee.io/s-java/)
+      - Python体系学习
     - 中间件
         - 分布式消息队列
             - [kafka](skill/middleware/mq/kafka.md)

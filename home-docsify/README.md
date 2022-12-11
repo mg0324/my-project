@@ -109,28 +109,8 @@
                             parts:['IDEA','Git','Maven','Grade','UML']
                         },
                         {
-                            moduleName: '微服务',
-                            parts:['Spring Cloud','Dubble']
-                        },
-                        {
-                            moduleName: '源码阅读',
-                            parts:['JDK相关','Spring','Netty','Zookeeper']
-                        },
-                        {
-                            moduleName: 'Java调优',
-                            parts:['MySQL调优','JVM调优','Tomcat调优','线程池调优']
-                        },
-                        {
-                            moduleName: '数据库',
-                            parts:['MySQL','Oracle','PostgreSQL','Sqlite']
-                        },
-                        {
-                            moduleName: '框架',
-                            parts:['Spring','Spring Boot','Mybatis','Mybatis Plus','Netty']
-                        },
-                        {
-                            moduleName: 'Java核心',
-                            parts:['Java基础','Java Web','Java IO','Java高并发@1@/skill/java/juc','Java虚拟机@1@/skill/java/jvm']
+                            moduleName: '计算机语言学习',
+                            parts:['Java体系学习@2@https://mgang.gitee.io/s-java/','Python体系学习']
                         },
                         {
                             moduleName: '编程基石',
