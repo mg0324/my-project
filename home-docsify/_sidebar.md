@@ -32,8 +32,5 @@
 - 世界
     - [物理](world/physic.md)
 
-- 个人
-  - [康复](personal/doctor.md)
-  - [牙齿矫正](personal/tee.md)
-  - [关于我](personal/aboutme.md)
+- [个人](personal/README.md)
 
