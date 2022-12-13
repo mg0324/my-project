@@ -31,6 +31,7 @@
     - [Linux](skill/linux.md)
 - 世界
     - [物理](world/physic.md)
+    - [三体](world/threebody.md)
 
 - [个人](personal/README.md)
 
