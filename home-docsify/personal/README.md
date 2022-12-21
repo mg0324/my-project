@@ -1,3 +1,3 @@
 - [康复](personal/doctor.md)
-- [牙齿矫正](personal/tee.md)
+- [牙齿矫正](personal/teeth.md)
 - [关于我](personal/aboutme.md)

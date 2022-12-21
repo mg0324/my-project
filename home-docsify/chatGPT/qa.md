@@ -1,4 +1,9 @@
 > 以下内容是询问ChatGPT给出的答案，仅供参考；chatGPT地址：https://chat.openai.com/chat
+
+``` bash
+open /Applications/Google\ Chrome.app --args http-server=http://127.0.0.1:9999
+```
+
 + 怎么做面试突击计划 +
 
     如果你想要进行面试突击计划，你可以考虑以下步骤：
