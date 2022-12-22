@@ -3,6 +3,7 @@
 - [ChatGPT问答](chatGPT/qa.md)
 - 技术
     - 前端
+        - [web基础](skill/front/web-base.md)
         - [主流前端](skill/front/all.md)
         - [Docsify使用vue](skill/front/useVue.md)
     - 计算机基石
