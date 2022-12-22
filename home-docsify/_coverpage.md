@@ -1,13 +1,10 @@
 # 程序猫大刚主页 <small>1.0</small>
 
-> 本主页由[docsify](https://docsify.js.org/#/zh-cn/)构建
+> 主要整理内容包括<br/>
+> 经历、 导航工具<br/>
+> 技术体系和世界观等。<br/>
 
-- 整理关于自己的经历
-- 记录前端热门技术
-- 记录后端语言技术
-- 程序猫大刚 © 2022 粤ICP备17082965号
+本主页由[docsify](https://docsify.js.org/#/zh-cn/)构建
 
-[GitHub](https://github.com/mg0324/)
-[Gitee](https://gitee.com/mgang)
-[CSDN](https://blog.csdn.net/mg0324)
 [我的博客](http://mg.meiflower.top/mb/)
+[快速开始](/README.md)
