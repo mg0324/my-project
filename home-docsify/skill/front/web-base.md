@@ -75,7 +75,7 @@ p {
 ### 总结
 如下图，通过一个简单的示例将3者的关系清晰的表示出来：
 
-![](../static/java/base/web-base.drawio.svg)
+![](../../static/skill/front/web/web-base.drawio.svg)
 
 html是网页内容和布局的载体，通过css美化样式，js脚本来和用户交互，最后通过浏览器解析渲染显示出来。
 
