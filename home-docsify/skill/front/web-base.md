@@ -72,7 +72,7 @@ p {
 </html>
 ```
 
-### 总结
+## 总结
 如下图，通过一个简单的示例将3者的关系清晰的表示出来：
 
 ![](../../static/skill/front/web/web-base.drawio.svg)
