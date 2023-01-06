@@ -118,7 +118,7 @@
                         },
                         {
                             moduleName: '计算机基础',
-                            parts:['计算机组成原理@2@https://mgang.gitee.io/sn-cpu/','计算机网络','操作系统']
+                            parts:['计算机组成原理@2@http://mgang.gitee.io/s-cpu/','计算机网络','操作系统']
                         }
                     ]
                 };
