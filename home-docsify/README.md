@@ -42,7 +42,7 @@
 
 <div id="container" class="layui-container">
     <div style="position:fixed;right:10px;bottom:50px;">
-        <img style="width:40px;border:1px solid green;" src="https://mg.meiflower.top/res/drawio/okr/10.drawio.png"/>
+        <img style="width:40px;border:1px solid green;" src="https://mg.meiflower.top/res/drawio/okr/2023/1.drawio.png"/>
     </div>
     <fieldset class="layui-elem-field" style="padding: 10px;" v-for="(item,index) in nodes">
         <legend>{{item.moduleName}}</legend>
