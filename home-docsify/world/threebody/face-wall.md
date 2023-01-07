@@ -16,10 +16,10 @@ style: |
 
 # 面壁计划
 
-![bg opacity:.6](http://qn.meiflower.top/threebody/02.png)
-![bg opacity:.5](http://qn.meiflower.top/threebody/03.png)
-![bg opacity:.5](http://qn.meiflower.top/threebody/043.png)
-![bg opacity:.6](http://qn.meiflower.top/threebody/05.png)
+![bg opacity:.6](https://mg.meiflower.top/oss/threebody/02.png)
+![bg opacity:.5](https://mg.meiflower.top/oss/threebody/03.png)
+![bg opacity:.5](https://mg.meiflower.top/oss/threebody/043.png)
+![bg opacity:.6](https://mg.meiflower.top/oss/threebody/05.png)
 
 #### 利用人类无法被看穿的思想找到阻止三体入侵的方法的计划
 
@@ -29,7 +29,7 @@ style: |
 <!-- _backgroundColor: black -->
 <!-- _color: white -->
 
-![bg left](http://qn.meiflower.top/threebody/02.png)
+![bg left](https://mg.meiflower.top/oss/threebody/02.png)
 
 <!-- _fontSize:10px; --> 
 
@@ -43,7 +43,7 @@ style: |
 <!-- _backgroundColor: white -->
 <!-- _color: black -->
 
-![bg right](http://qn.meiflower.top/threebody/03.png)
+![bg right](https://mg.meiflower.top/oss/threebody/03.png)
 
 * 委内瑞拉总统，回到祖国首都加拉加斯，被愤怒的民众用石头砸死。
 * ***真实意图***：在水星地层中埋藏大量的氢弹，一旦引爆会使整个太阳系变成比三体更加恶劣的地狱，以全人类的生命为筹码要挟三体。
@@ -55,7 +55,7 @@ style: |
 <!-- _backgroundColor: black -->
 <!-- _color: white -->
 
-![bg left](http://qn.meiflower.top/threebody/043.png)
+![bg left](https://mg.meiflower.top/oss/threebody/043.png)
 
 * 英国科学家、政治家，被撤销面壁者身份后，成为罗辑和联合国行星防御理事会之间的联络人，之后下落不明。
 * ***真实意图***：研究思想钢印并向人类植入绝对失败主义的理念，让人类尽快逃离太阳系以避免与三体的正面接触。
@@ -67,7 +67,7 @@ style: |
 <!-- _backgroundColor: white -->
 <!-- _color: black -->
 
-![bg right](http://qn.meiflower.top/threebody/05.png)
+![bg right](https://mg.meiflower.top/oss/threebody/05.png)
 
 * 中国社会学博士、执剑人，在针对整个太阳系的二向箔打击下，拒绝程心的回援，在太阳系冥王星被二维化。
 * ***真实意图***：建立黑暗森林威慑。
