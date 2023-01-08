@@ -16,6 +16,7 @@ def run():
     app.shut_down()
 
 if __name__ == '__main__':
+    # sys.argv = ['app.py','read','-short_url=BV1cP4y1v7o8@00:31']
     # sys.argv = ['app.py', 'urlGet','-url=https://space.bilibili.com/1174515315/video?tid=0&page=2&keyword=&order=pubdate']
     # 运行
     run()

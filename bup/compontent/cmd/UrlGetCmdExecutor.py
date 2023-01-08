@@ -18,7 +18,8 @@ class UrlGetCmdExecutor(CmdExecutor):
         array = []
         for li in lis:
             aid = li.get_attribute("data-aid")
-            array.append(aid)
+            length = li.find_element_by_css_selector(".length").text
+            array.append(aid + "@" + length)
         LogUtil.info("已获取完成:" + ",".join(s for s in array))
         pass
 

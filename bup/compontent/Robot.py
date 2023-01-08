@@ -64,7 +64,7 @@ class Robot:
         pass
 
     # 登录
-    @getTime("登录到店")
+    @getTime("尝试登录")
     def do_login(self):
         # 需要登录 并且 没有加载cookie则加载
         if self.argument.get_args().need_login and not self.space.is_login():
@@ -84,7 +84,7 @@ class Robot:
         pass
 
     # 登录到后端首页
-    @getTime("登录到订单首页")
+    @getTime("去往空间首页")
     def login_to_home(self):
         # 尝试到首页
         self.browser.get(self.space.home_url)
