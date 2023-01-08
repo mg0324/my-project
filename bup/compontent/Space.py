@@ -3,16 +3,16 @@ from compontent.Config import Config
 
 # 店
 class Space:
-    # 订单详情页URL
-    order_detail_url = "https://gsp.aliexpress.com/apps/order/detail?step=4&orderId="
+    # 主页
+    home_url = "https://space.bilibili.com/1174515315"
     
-    # 参数
-    __args = None
+    # 类型
+    __kind = None
     # 是否登录
     __is_login = False
 
-    def __init__(self,args):
-        self.__args = args
+    def __init__(self,kind):
+        self.__kind = kind
         pass
 
     # 是否登录

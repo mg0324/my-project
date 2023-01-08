@@ -2,6 +2,8 @@
 ## 简介
 作为一个up主，为了运营好空间，用程序为其助力！
 
+## 依赖
+* [selenium==3.141.0](https://python-selenium-zh.readthedocs.io/zh_CN/latest/)
 
 ## 安装
 1. 基于[conda](https://docs.conda.io/en/latest/miniconda.html)创建虚拟环境

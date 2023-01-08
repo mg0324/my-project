@@ -17,6 +17,6 @@ class ReadCmdExecutor(CmdExecutor):
             LogUtil.info("正在访问:"+true_url)
             robot.browser.get(true_url)
             # 停顿3秒
-            time.sleep(5)
+            time.sleep(3)
         pass
 

@@ -34,16 +34,8 @@ class Robot:
         # 创建浏览器
         self.browser = Browser.new_browser(self.argument)
         # 创建空间
-        self.space = Space(self.argument.get_args())
+        self.space = Space(self.argument.get_args().space_kind)
         pass
-
-    # # 通过浏览器获取订单列表
-    # def fetch_orders(self):
-    #     # 使用 load json方式
-    #     order_strategy = OrderManager.get_instance(self.argument.get_args().order_from)
-    #     orders = order_strategy.fetch_order_list(self)
-    #     LogUtil.info(f"[store={self.store.get_name()}]本次处理订单列表为{str(orders)}")
-    #     return orders
 
     # 判断是否有任务需要执行
     def __check__(self):
@@ -61,6 +53,7 @@ class Robot:
             cmdExecutor = CmdManager.get_instance(cmdName)
             if cmdExecutor:
                 LogUtil.info("执行命令:" + cmdName)
+                self.login_to_home()
                 cmdExecutor.execute(self)
         pass
 
@@ -73,11 +66,11 @@ class Robot:
     # 登录
     @getTime("登录到店")
     def do_login(self):
-        # 没有加载cookie则加载
-        if not self.store.is_login():
-            cookies_path = self.store.get_cookies_path()
+        # 需要登录 并且 没有加载cookie则加载
+        if self.argument.get_args().need_login and not self.space.is_login():
+            cookies_path = self.space.get_cookies_path()
             # 找到最小需要的cookies，加快登录cookie的操作
-            needs = ["aep_common_f", "xman_t"]
+            needs = ["sid"]
             # 设置cookies跳过登录
             with open(cookies_path) as f:
                 list_cookies = json.loads(f.read())
@@ -86,25 +79,17 @@ class Robot:
                     del cookie['sameSite']
                     self.browser.add_cookie(cookie)
             # 设置登录状态为True
-            self.store.set_login(True)
-            LogUtil.info("[store=" + self.store.get_name() + "]加载登录信息成功")
+            self.space.set_login(True)
+            LogUtil.info("[space=" + self.space.get_name() + "]加载登录信息成功")
         pass
 
     # 登录到后端首页
     @getTime("登录到订单首页")
     def login_to_home(self):
         # 尝试到首页
-        self.browser.get(self.store.home_url)
+        self.browser.get(self.space.home_url)
         # 登录
         self.do_login()
-        pass
-
-    # 到详情页
-    @getTime("到详情页")
-    def goto_detail(self, order_number):
-        self.browser.switch_window(0)
-        path = self.store.order_detail_url + order_number
-        self.browser.get(path)
         pass
 
     # 处理follow
