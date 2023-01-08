@@ -53,6 +53,7 @@
                                     '我的项目@https://gitee.com/mgang/my-project',
                                     '猫大刚主页@https://mg.meiflower.top/',
                                     '我的计划@https://mg.meiflower.top/plan/',
+                                    '我的B站空间@https://space.bilibili.com/1174515315',
                                     '我的博客@https://mg.meiflower.top/mb/',
                                     '待办列表@http://todo.meiflower.top/',
                                     '芒果网盘@http://disk.meiflower.top/',
@@ -100,7 +101,10 @@
                         },
                         {
                             moduleName: '跨境电商运营',
-                            parts:['速卖通@https://gsp.aliexpress.com/','17Track@https://www.17track.net/zh-cn']
+                            parts:[
+                                '速卖通@https://gsp.aliexpress.com/',
+                                '17Track@https://www.17track.net/zh-cn'
+                            ]
                         },
                         {
                             moduleName: '代码托管',
@@ -158,7 +162,8 @@
                             moduleName: '社会事宜',
                             parts:[
                                 '广东交通局@https://gab.122.gov.cn/m/login',
-                                '灵活就业事项@https://www.gdzwfw.gov.cn/portal/v2/search?region=440300&keyword=%E7%81%B5%E6%B4%BB%E5%B0%B1%E4%B8%9A&areaCode=440300&departmentCode=&onlyCorrespondingLevel=0&type=']
+                                '灵活就业事项@https://www.gdzwfw.gov.cn/portal/v2/search?region=440300&keyword=%E7%81%B5%E6%B4%BB%E5%B0%B1%E4%B8%9A&areaCode=440300&departmentCode=&onlyCorrespondingLevel=0&type='
+                            ]
                         }
 
                     ]
