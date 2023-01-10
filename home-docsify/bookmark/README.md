@@ -55,6 +55,7 @@
                                     '我的计划@https://mg.meiflower.top/plan/',
                                     '我的B站空间@https://space.bilibili.com/1174515315',
                                     '我的博客@https://mg.meiflower.top/mb/',
+                                    'marp分享@http://marp.meiflower.top/',
                                     '待办列表@http://todo.meiflower.top/',
                                     '芒果网盘@http://disk.meiflower.top/',
                                     '芒果卡片@https://mg.meiflower.top/card-admin/#/login',
