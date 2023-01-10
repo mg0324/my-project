@@ -75,11 +75,13 @@
                         {
                             moduleName: '常用工具',
                             parts:[
+                                '百度统计@https://tongji.baidu.com/main/homepage/22511391/homepage/index',
                                 '图片转base64@https://kz16.top/png2base64.html',
                                 '谷歌翻译@https://translate.google.com.hk/?hl=zh-CN&sourceid=cnhp',
                                 'Free DNS@https://dns.he.net/index.cgi',
                                 'processon@https://www.processon.com/login',
-                                'drawio@https://app.diagrams.net/'
+                                'drawio@https://app.diagrams.net/',
+                                '华为云容器服务@https://console.huaweicloud.com/swr/?agencyId=9fb50aa2b84e4d9f820bb6d32ca2b5ab&region=cn-south-1&locale=zh-cn#/swr/warehouse/detail/hw_008618613073290_01/mangoorg/flask-api/guide'
                             ]
                         },
                         {
@@ -88,7 +90,8 @@
                                 '千库网@https://588ku.com/so/shuqianye/',
                                 '胖虎的工具箱@https://www.955code.com/',
                                 'JDK11下载@https://blog.lupf.cn/articles/2022/02/24/1645713619397.html#toc_h2_17',
-                                'docker hub@https://hub.docker.com/'
+                                'docker hub@https://hub.docker.com/',
+                                '各操作系统包@https://pkgs.org/'
                             ]
                         },
                         {
