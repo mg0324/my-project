@@ -1,6 +1,7 @@
 # coding=utf-8
 import json
 import time
+import random
 from compontent.cmd.CmdExecutor import CmdExecutor
 from compontent.LogUtil import LogUtil
 
@@ -11,11 +12,15 @@ class ReadCmdExecutor(CmdExecutor):
 
     def execute(self, robot):
         urls = robot.argument.get_args().short_url
-        for url in urls.split(","):
+        url_list = urls.split(",")
+        # 每次取5个
+        url_list5 = random.sample(url_list,5)
+        for url in url_list5:
             # 访问地址
             arr = url.split("@")
             true_url = self.__base_path + arr[0]
-            LogUtil.info("正在访问:"+true_url)
+            LogUtil.debug("正在访问:"+true_url)
+            LogUtil.error("> " + url)
             robot.browser.get(true_url)
             sleep_sec = 31
             if len(arr) > 0:
@@ -25,7 +30,7 @@ class ReadCmdExecutor(CmdExecutor):
                 sleep_sec = v_sec
                 if v_sec > 30:
                     sleep_sec = 31
-            LogUtil.info("停顿:" + str(sleep_sec) + "秒")
+            LogUtil.debug("停顿:" + str(sleep_sec) + "秒")
             # 停顿秒
             time.sleep(sleep_sec)
         pass

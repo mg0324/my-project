@@ -30,7 +30,7 @@ class Robot:
         self.argument = Argument(self.name)
         # 设置日志级别
         LogUtil.set_level(self.argument.get_args().log_level)
-        LogUtil.info("[bup]参数集：" + str(self.argument.get_args()))
+        LogUtil.debug("[bup]参数集：" + str(self.argument.get_args()))
         # 创建浏览器
         self.browser = Browser.new_browser(self.argument)
         # 创建空间
@@ -48,14 +48,23 @@ class Robot:
     @getTime(stage="主工作")
     def start_working(self):
         if len(sys.argv) > 0:
-            # 根据子命令分流执行
-            cmdName = sys.argv[1]
+            # 根据子命令分流执行 找到子命令
+            cmdName = self.find_sub_cmd()
             cmdExecutor = CmdManager.get_instance(cmdName)
             if cmdExecutor:
-                LogUtil.info("执行命令:" + cmdName)
+                LogUtil.debug("执行命令:" + cmdName)
                 self.login_to_home()
                 cmdExecutor.execute(self)
         pass
+    
+    # 找到子命令
+    def find_sub_cmd(self):
+        index = 1
+        while True:
+            cmd = sys.argv[index]
+            if not cmd.startswith("-"):
+                return cmd
+            index = index + 1
 
     # 关机
     def shut_down(self):
@@ -80,7 +89,7 @@ class Robot:
                     self.browser.add_cookie(cookie)
             # 设置登录状态为True
             self.space.set_login(True)
-            LogUtil.info("[space=" + self.space.get_name() + "]加载登录信息成功")
+            LogUtil.debug("[space=" + self.space.get_name() + "]加载登录信息成功")
         pass
 
     # 登录到后端首页
