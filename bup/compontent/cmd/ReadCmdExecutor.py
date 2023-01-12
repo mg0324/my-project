@@ -54,15 +54,10 @@ class ReadCmdExecutor(CmdExecutor):
             elif r_type == 'read':
                 # 专栏
                 time.sleep(random.randint(5, 10))
-                val = random.randint(1, 10)
-                if val >= 2:
+                val = random.randint(1, 100)
+                # 80%的概率滑动
+                if val >= 20:
                     # 滑动到阅读推荐
                     robot.browser.get_driver().execute_script("document.getElementById('readRecommendInfo').scrollIntoView(true);")
                 time.sleep(random.randint(1, 5))
-
         pass
-
-
-if __name__ == '__main__':
-    v = random.randint(1,10)
-    print(v)
