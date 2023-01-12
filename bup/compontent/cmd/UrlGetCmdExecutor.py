@@ -9,6 +9,12 @@ class UrlGetCmdExecutor(CmdExecutor):
 
     __base_path = "https://space.bilibili.com/1174515315/video?tid=0&page=1&keyword=&order=pubdate"
 
+    def register(self,subparsers):
+        # 添加子命令 urlGet
+        parser_url_get = subparsers.add_parser('urlGet', help='子命令urlGet,获取B站空间ID下的视频短地址')
+        parser_url_get.add_argument('-url', type=str, required=True, help='需要获取短视频地址的页面url')
+        pass
+
     def execute(self, robot):
         url = robot.argument.get_args().url
         # 访问地址

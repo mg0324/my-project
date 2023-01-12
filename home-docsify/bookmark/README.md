@@ -76,13 +76,16 @@
                         {
                             moduleName: '常用工具',
                             parts:[
+                                'chrome商店@https://chrome.google.com/webstore/category/extensions',
+                                '定稿设计@https://gd74865930.qiye.gaoding.com/smartdesign',
                                 '百度统计@https://tongji.baidu.com/main/homepage/22511391/homepage/index',
                                 '图片转base64@https://kz16.top/png2base64.html',
                                 '谷歌翻译@https://translate.google.com.hk/?hl=zh-CN&sourceid=cnhp',
                                 'Free DNS@https://dns.he.net/index.cgi',
                                 'processon@https://www.processon.com/login',
                                 'drawio@https://app.diagrams.net/',
-                                '华为云容器服务@https://console.huaweicloud.com/swr/?agencyId=9fb50aa2b84e4d9f820bb6d32ca2b5ab&region=cn-south-1&locale=zh-cn#/swr/warehouse/detail/hw_008618613073290_01/mangoorg/flask-api/guide'
+                                '华为云容器服务@https://console.huaweicloud.com/swr/?agencyId=9fb50aa2b84e4d9f820bb6d32ca2b5ab&region=cn-south-1&locale=zh-cn#/swr/warehouse/detail/hw_008618613073290_01/mangoorg/flask-api/guide',
+                                'doocs md@https://doocs.gitee.io/md/'
                             ]
                         },
                         {
@@ -123,7 +126,8 @@
                                     'spring-brick@https://gitee.com/starblues/springboot-plugin-framework-parent',
                                     'sofa-jarslink@https://github.com/sofastack/sofa-jarslink',
                                     'JavaGuide轻量级http框架@https://github.com/Snailclimb/jsoncat',
-                                    '代码导航@https://github.com/liyupi/code-nav'
+                                    '代码导航@https://github.com/liyupi/code-nav',
+                                    '微信Markdown编辑器@https://github.com/doocs/md'
                             ]
                         },
                         {

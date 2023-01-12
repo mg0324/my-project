@@ -12,15 +12,19 @@ RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 # Allow statements and log messages to immediately appear in the Knative logs
 ENV PYTHONUNBUFFERED True
 
+# 环境变量来传递命令
+ENV EXECUTE_CMD ${EXECUTE_CMD}
+ENV EXECUTE_TIMEOUT ${EXECUTE_TIMEOUT}
+
 # Copy local code to the container image.
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
 # Install production dependencies.
-RUN pip3 install chromedriver-binary==108.0.5359.22.0
+RUN pip3 install chromedriver-binary==108.0.5359.22.0 -i https://pypi.doubanio.com/simple
 
 RUN pip3 install -r requirements.txt -i https://pypi.doubanio.com/simple
 #CMD [ "chromedriver" ]
-CMD ["python3", "job-mt.py"]
+CMD ["python3", "start.py","${EXECUTE_CMD}","${EXECUTE_TIMEOUT}"]
 

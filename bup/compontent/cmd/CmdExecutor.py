@@ -8,3 +8,8 @@ class CmdExecutor:
     def execute(self, robot):
 
         pass
+
+    # 注册子命令
+    def register(self,subparsers):
+
+        pass

@@ -28,8 +28,11 @@ def new_chrome(argument):
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_argument('--incognito')  # 无痕模式
     # browser = webdriver.PhantomJS()
-    # browser = webdriver.Chrome(executable_path="/usr/local/lib/python3.6/site-packages/chromedriver_binary/chromedriver",options=chrome_options)
-    browser = webdriver.Chrome(options=chrome_options)
+    # 运行类型，如果是docker方式，则指定chromedriver路径
+    if argument.get_args().run_type == 'docker':
+        browser = webdriver.Chrome(executable_path="/usr/local/lib/python3.6/site-packages/chromedriver_binary/chromedriver",options=chrome_options)
+    else:
+        browser = webdriver.Chrome(options=chrome_options)
     # 需要设置浏览器的window.navigator.webdriver=undefined，不然无法通过滑块检查（速卖通加了webdriver禁止）
     # https://blog.csdn.net/weixin_43881394/article/details/108467118?spm=1005.2026.3001.5635&utm_medium=distribute.pc_relevant_ask_down.none-task-blog-2~default~OPENSEARCH~Rate-5.pc_feed_download_top3ask&depth_1-utm_source=distribute.pc_relevant_ask_down.none-task-blog-2~default~OPENSEARCH~Rate-5.pc_feed_download_top3ask
     # browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {

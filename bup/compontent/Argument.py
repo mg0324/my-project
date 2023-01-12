@@ -1,7 +1,6 @@
 # coding=utf-8
 import argparse
-
-
+from compontent.cmd.CmdManager import CmdManager
 
 # 命令行参数类
 class Argument:
@@ -16,14 +15,8 @@ class Argument:
     def get_version(self):
         return self.__name + " 1.0.0"
 
-    def __init__(self,name):
-        self.__name = name
-        description = "欢迎使用 " + self.get_version()
-        usage = "python3 app.py [cmd]"
-        parser = argparse.ArgumentParser(usage=usage,
-                                         prog=self.__name,
-                                         description=description,
-                                         allow_abbrev=False)
+    # 初始化主参数
+    def init_main_args(self,parser):
         parser.add_argument('-v', '--version',
                             action="version",
                             version=self.get_version(),
@@ -63,17 +56,26 @@ class Argument:
                             required=False,
                             help="无头浏览器运行，open-打开；close-关闭；默认%(default)s")
 
-        subparsers = parser.add_subparsers(help='子命令说明')
+        parser.add_argument('-rt', '--run_type',
+                            default="local",
+                            type=str,
+                            metavar="",
+                            required=False,
+                            help="运行模式，local-本地；docker-docker容器运行；默认%(default)s")
+        pass
 
-        # 添加子命令 read
-        parser_read = subparsers.add_parser('read', help='子命令read,刷加阅读量')
-        parser_read.add_argument('-short_url', type=str, required=True, help='需要刷加阅读量的视频短地址,多个用逗号间隔,如BV1BG4y1L7kT,BV1A24y1e7La')
-        parser_read.add_argument('-count', type=int, help='刷多少次')
-
-        # 添加子命令 urlGet
-        parser_url_get = subparsers.add_parser('urlGet', help='子命令urlGet,获取B站空间ID下的视频短地址')
-        parser_url_get.add_argument('-url', type=str, required=True, help='需要获取短视频地址的页面url')
-        
+    def __init__(self,name):
+        self.__name = name
+        description = "欢迎使用 " + self.get_version()
+        usage = "python3 app.py [cmd]"
+        parser = argparse.ArgumentParser(usage=usage,
+                                         prog=self.__name,
+                                         description=description,
+                                         allow_abbrev=False)
+        # 初始化参数
+        self.init_main_args(parser)
+        # 注册子命令
+        CmdManager.register(parser)
         self.__args = parser.parse_args()
         self.__parser = parser
         pass
