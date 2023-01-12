@@ -154,7 +154,8 @@
                             moduleName: '文档相关',
                             parts:[
                                 'python-selenium3@https://python-selenium-zh.readthedocs.io/zh_CN/latest/',
-                                'python-argparse@https://docs.python.org/zh-cn/3/library/argparse.html#'
+                                'python-argparse@https://docs.python.org/zh-cn/3/library/argparse.html#',
+                                'python-random@http://study.yali.edu.cn/pythonhelp/library/random.html'
                             ]
                         },
                         {
