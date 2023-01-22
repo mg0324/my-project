@@ -27,11 +27,27 @@
     background-color: white;
     color: black;
 }
+.nav{
+    position: fixed;
+    top: 192px;
+    width: 120px;
+    right: 20px;
+    z-index: 999;
+    background: #eee;
+    padding: 10px;
+}
+.nav a{
+    display: block;
+    padding: 2px;
+}
 </style>
 
 <div id="container" class="layui-container">
+    <div class="nav">
+        <a v-for="(item,index) in nodes" :href="aHref(item)">{{item.moduleName}}</a>
+    </div>
     <fieldset class="layui-elem-field" style="padding: 8px;" v-for="(item,index) in nodes">
-        <legend>{{item.moduleName}}</legend>
+        <legend><a :id="item.moduleId">{{item.moduleName}}</a></legend>
         <div class="layui-row">
             <div class="layui-col-xs12 layui-col-sm12 layui-col-md2 no" v-for="(part,index) in item.parts">
                 <a :href="theHref(part)" target="_blank">{{theName(part)}}</a>
@@ -47,6 +63,7 @@
                 return {
                     nodes: [
                         {
+                            moduleId: 'my-project',
                             moduleName: '我的项目',
                             parts:[
                                     '项目资源分布@https://mg.meiflower.top/project/README',
@@ -74,6 +91,7 @@
                             ]
                         },
                         {
+                            moduleId: 'offen-tool',
                             moduleName: '常用工具',
                             parts:[
                                 'chrome商店@https://chrome.google.com/webstore/category/extensions',
@@ -89,6 +107,7 @@
                             ]
                         },
                         {
+                            moduleId: 'resource-nav',
                             moduleName: '资源导航',
                             parts:[
                                 '千库网@https://588ku.com/so/shuqianye/',
@@ -99,6 +118,7 @@
                             ]
                         },
                         {
+                            moduleId: 'front-ui',
                             moduleName: '前端UI库',
                             parts:[
                                 'Layui@hhttps://layui.gitee.io/v2/',
@@ -107,6 +127,7 @@
                             ]
                         },
                         {
+                            moduleId: 'cross-sale',
                             moduleName: '跨境电商运营',
                             parts:[
                                 '速卖通@https://gsp.aliexpress.com/',
@@ -114,10 +135,12 @@
                             ]
                         },
                         {
+                            moduleId: 'code-manage',
                             moduleName: '代码托管',
                             parts:['Gitee@https://gitee.com/mgang','Github@https://github.com/mg0324']
                         },
                         {
+                            moduleId: 'open-project',
                             moduleName: '开源项目',
                             parts:[
                                     '深度学习飞桨@https://www.paddlepaddle.org.cn/',
@@ -131,6 +154,7 @@
                             ]
                         },
                         {
+                            moduleId: 'al-study',
                             moduleName: '算法学习',
                             parts:[
                                 '左神算法@https://github.com/mg0324/zuoshen-algorithm',
@@ -138,6 +162,7 @@
                             ]
                         },
                         {
+                            moduleId: 'it-man',
                             moduleName: 'IT大牛',
                             parts:[
                                 'JavaGuide@https://github.com/Snailclimb',
@@ -147,10 +172,12 @@
                             ]
                         },
                         {
+                            moduleId: 'rspb',
                             moduleName: '树莓派',
                             parts:['树莓派操作系统@https://www.raspberrypi.com/software/operating-systems/']
                         },
                         {
+                            moduleId: 'doc-about',
                             moduleName: '文档相关',
                             parts:[
                                 'python-selenium3@https://python-selenium-zh.readthedocs.io/zh_CN/latest/',
@@ -159,6 +186,7 @@
                             ]
                         },
                         {
+                            moduleId: 'my-res',
                             moduleName: '我的资源',
                             parts:[
                                 '我的蓝奏云@https://pc.woozooo.com/mydisk.php',
@@ -168,6 +196,7 @@
                             ]
                         },
                         {
+                            moduleId: 'sol-thing',
                             moduleName: '社会事宜',
                             parts:[
                                 '广东交通局@https://gab.122.gov.cn/m/login',
@@ -179,6 +208,9 @@
                 };
             },
             methods: {
+                aHref(v){
+                    return "?id=" + v.moduleId;
+                },
                 theName(v){
                     return v.split('@')[0];
                 },
