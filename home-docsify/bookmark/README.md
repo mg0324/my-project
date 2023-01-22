@@ -47,7 +47,8 @@
         <a v-for="(item,index) in nodes" :href="aHref(item)">{{item.moduleName}}</a>
     </div>
     <fieldset class="layui-elem-field" style="padding: 8px;" v-for="(item,index) in nodes">
-        <legend><a :id="item.moduleId">{{item.moduleName}}</a></legend>
+        <a :id="item.moduleId" style="position: relative;top:-50px;"></a>
+        <legend>{{item.moduleName}}</legend>
         <div class="layui-row">
             <div class="layui-col-xs12 layui-col-sm12 layui-col-md2 no" v-for="(part,index) in item.parts">
                 <a :href="theHref(part)" target="_blank">{{theName(part)}}</a>
