@@ -57,12 +57,12 @@
         color:'rgb(90,90,90)',
         language:'chinese'
       },
-      // search: {
-      //   maxAge: 86400000, // Expiration time, the default one day
-      //   paths: [], // or 'auto'
-      //   placeholder: '开始搜索',
-      //   noData: '啥也没有!'
-      // },
+      search: {
+        maxAge: 86400000, // Expiration time, the default one day
+        paths: [], // or 'auto'
+        placeholder: '开始搜索',
+        noData: '啥也没有!'
+      },
       copyCode: {
         buttonText : '点击复制',
         errorText  : '错误',
@@ -202,7 +202,12 @@
       },
       plantuml: {
         skin: 'default'
-      }
+      },
+      toc: {
+        scope: '.markdown-section',
+        headings: 'h1, h2, h3, h4, h5, h6',
+        title: '目录',
+      },
     }
   </script>
   <script src="//cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
@@ -239,6 +244,11 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
   <script src="https://cdn.jsdelivr.net/gh/Sumsung524/docsify-backTop/dist/docsify-backTop.min.js"></script>
   <script src="//unpkg.com/docsify-plantuml/dist/docsify-plantuml.min.js"></script>
+  
+  <!-- toc 目录-->
+  <link rel="stylesheet" href="https://unpkg.com/docsify-toc@1.0.0/dist/toc.css">
+  <script src="https://unpkg.com/docsify-toc@1.0.0/dist/toc.js"></script>
+
   <script>
     var _hmt = _hmt || [];
     (function() {
