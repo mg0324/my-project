@@ -183,7 +183,8 @@
                             parts:[
                                 'python-selenium3@https://python-selenium-zh.readthedocs.io/zh_CN/latest/',
                                 'python-argparse@https://docs.python.org/zh-cn/3/library/argparse.html#',
-                                'python-random@http://study.yali.edu.cn/pythonhelp/library/random.html'
+                                'python-random@http://study.yali.edu.cn/pythonhelp/library/random.html',
+                                'giscus app@https://giscus.app/zh-CN'
                             ]
                         },
                         {
@@ -201,7 +202,8 @@
                             moduleName: '社会事宜',
                             parts:[
                                 '广东交通局@https://gab.122.gov.cn/m/login',
-                                '灵活就业事项@https://www.gdzwfw.gov.cn/portal/v2/search?region=440300&keyword=%E7%81%B5%E6%B4%BB%E5%B0%B1%E4%B8%9A&areaCode=440300&departmentCode=&onlyCorrespondingLevel=0&type='
+                                '灵活就业事项@https://www.gdzwfw.gov.cn/portal/v2/search?region=440300&keyword=%E7%81%B5%E6%B4%BB%E5%B0%B1%E4%B8%9A&areaCode=440300&departmentCode=&onlyCorrespondingLevel=0&type=',
+                                '深圳市公安局业务@https://msjw.ga.sz.gov.cn/?serviceType=1'
                             ]
                         }
 
