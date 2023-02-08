@@ -138,7 +138,11 @@
                         {
                             moduleId: 'code-manage',
                             moduleName: '代码托管',
-                            parts:['Gitee@https://gitee.com/mgang','Github@https://github.com/mg0324']
+                            parts:[
+                                'Gitee@https://gitee.com/mgang',
+                                'Github@https://github.com/mg0324',
+                                'NPM packages@https://www.npmjs.com/settings/mgang/packages'
+                            ]
                         },
                         {
                             moduleId: 'open-project',
