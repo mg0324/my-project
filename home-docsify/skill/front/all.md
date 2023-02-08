@@ -6,7 +6,11 @@
 * [Vuex](https://vuex.vuejs.org/zh/) - vue的状态管理模式 + 库。
 * [Pinia](https://pinia.vuejs.org/) - Pinia 是 Vue 的存储库，它允许您跨组件/页面共享状态。
 
-
+## 前端cdn
+* [bootcdn](https://www.bootcdn.cn) - 稳定、快速、免费的前端开源项目 CDN 加速服务，支持国内。
+* [jsdelivr](https://cdn.jsdelivr.net) - 用于开源项目的免费 CDN，针对来自 npm 和 GitHub 的 JS 和 ESM 交付进行了优化。适用于所有网络格式。国内外都支持。（推荐使用）
+* [cdnjs](https://cdnjs.com) - cdnjs 是一项免费的开源 CDN 服务，受到超过12.5% 的所有网站的信任，每月服务超过2000 亿个请求，由 Cloudflare 提供支持。国内外都支持。
+* [unpkg](https://unpkg.com) - unpkg 是一个快速的全球内容交付网络，适用于npm上的所有内容。国内外都支持。
 
 ## 工具
 * [npm](https://www.npmjs.cn/) - nodejs的包管理工具。

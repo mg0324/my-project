@@ -1,3 +1,4 @@
+* [更新日志](CHANGELOG.md)
 * 更多大牛
   * [Doocs 开源社区](https://doocs.gitee.io/#/README_CN)
   * [Java 全栈知识体系](https://pdai.tech/)
